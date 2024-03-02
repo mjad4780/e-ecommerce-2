@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/core/databases/cache/cache_helper.dart';
+import 'package:untitled/core/get_it/get_it.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // setupServise();
-  // await getIt<CacheHelper>().init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupServise();
+  await getIt<CacheHelper>().init();
   runApp(const MyApp());
 }
 
