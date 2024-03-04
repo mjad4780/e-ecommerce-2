@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/core/resources/color_manager.dart';
-import 'package:untitled/core/resources/font_manager.dart';
-import 'package:untitled/core/resources/styles_manager.dart';
-import 'package:untitled/core/resources/values_manager.dart';
+import 'package:untitled/core/my core/resources/color_manager.dart';
+import 'package:untitled/core/my core/resources/font_manager.dart';
+import 'package:untitled/core/my core/resources/styles_manager.dart';
+import 'package:untitled/core/my core/resources/values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(

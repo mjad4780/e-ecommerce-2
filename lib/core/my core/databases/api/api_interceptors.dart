@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:untitled/core/databases/api/end_ponits.dart';
-import 'package:untitled/core/databases/cache/cache_helper.dart';
-import 'package:untitled/core/get_it/get_it.dart';
+import 'package:untitled/core/my core/databases/api/end_ponits.dart';
+import 'package:untitled/core/my core/databases/cache/cache_helper.dart';
+import 'package:untitled/core/my core/get_it/get_it.dart';
 
 class ApiInterceptor extends Interceptor {
   @override
