@@ -15,6 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Onboading());
+    return MaterialApp(home: Onboading());
   }
 }
+
+// class name extends StatelessWidget {
+//   const name({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         height: 100,
+//         width: double.infinity,
+//         child: Image.asset('assets/images/illustration2.png'));
+//   }
+// }
