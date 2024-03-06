@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/controller/cubit/onboardingcontroll_cubit.dart';
+import 'package:untitled/core/my%20core/resources/color_manager.dart';
+
 import 'package:untitled/data/model/onbording.dart';
+import 'package:untitled/view/widget/onbording/Costembotom.dart';
+import 'package:untitled/view/widget/onbording/controller_page.dart';
+
+import '../widget/onbording/page_builder.dart';
 
 class Onboading extends StatelessWidget {
   const Onboading({super.key});
@@ -10,41 +17,34 @@ class Onboading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                  itemCount: onboidin.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Expanded(
-                          child: Image(
-                            image: AssetImage(onboidin[index].path),
+      body: BlocProvider(
+        create: (context) => OnboardingcontrollCubit(),
+        child: BlocConsumer<OnboardingcontrollCubit, OnboardingcontrollState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            final cubit = BlocProvider.of<OnboardingcontrollCubit>(context);
+            return const SafeArea(
+              child: Column(
+                children: [
+                  Expanded(flex: 3, child: page_builder()),
+                  Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 11,
                           ),
-                        ),
-                        //     const AssetImage('assets/images/illustration.png')
-                        //  const AssetImage('assets/images/illustration.png'),
-                        Text(onboidin[index].title),
-                        Text(onboidin[index].des)
-                      ],
-                    );
-                  }),
-            ),
-            SizedBox(
-              height: 11,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(22),
-                  color: Color.fromARGB(179, 198, 194, 194),
-                  boxShadow: [BoxShadow(offset: Offset.infinite)]),
-              width: double.infinity,
-              height: 40,
-              child: Row(),
-            )
-          ],
+                          Controller_page(),
+                          SizedBox(
+                            height: 22,
+                          ),
+                          costembotom()
+                        ],
+                      )),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

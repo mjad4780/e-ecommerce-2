@@ -49,10 +49,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   syncfusion_flutter_maps: ^24.1.47
   sqflite: ^2.3.2
-  google_sign_in: ^6.2.1
-  firebase_messaging: ^14.7.18
-  firebase_core: ^2.25.5
-  cloud_firestore: ^4.15.7
+  
   flutter_local_notifications: ^16.3.2
   geocoding: ^2.1.1
 

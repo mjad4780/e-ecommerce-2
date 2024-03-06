@@ -11,17 +11,17 @@ class onboiding {
 List<onboiding> onboidin = [
   onboiding(
       path: Assets.imagesIllustration,
-      title: 'hi',
+      title: 'This Font Software is licensed ',
       des:
-          'تأكد من كتابة الكلمات بشكل صحيحجرّب كلمات مختلفةجرّب استخدام كلمات أكثر شيوعًا'),
+          ' The goals of the Open Font License (OFL) are to stimulate worldwide/ndevelopment of collaborative font projects, to support the font creation'),
   onboiding(
       path: Assets.imagesIllustration2,
-      title: 'hello',
+      title: 'SIL Open Font License',
       des:
-          'لم ينجح بحثك عن rror detected in pubspec.yaml: Unexpected child "flutter_assets" found under "flutter ... في إظهار أي نتائج.'),
+          ' The goals of the Open Font License (OFL) are to stimulate worldwide/ndevelopment of collaborative font projects, to support the font creation'),
   onboiding(
       path: Assets.imagesIllustration3,
-      title: 'welcome',
+      title: 'licensed fonts to be used',
       des:
-          'لم ينجح بحثك عن rror detected in pubspec.yaml: Unexpected child "flutter_assets" found under "flutter ... في إظهار أي نتائج.')
+          ' The goals of the Open Font License (OFL) are to stimulate worldwide/ndevelopment of collaborative font projects, to support the font creation'),
 ];
