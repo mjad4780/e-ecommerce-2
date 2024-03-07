@@ -4,18 +4,19 @@ import 'package:untitled/core/my%20core/get_it/get_it.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
+import 'package:untitled/view/screen/auth/Login.dart';
 
 final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/",
     builder: (context, state) =>
         getIt<CacheHelper>().getData(key: 'onbourding') == true
-            ? const name()
+            ? const Language()
             : const Onboading(),
   ),
   GoRoute(
-    path: "/name",
-    builder: (context, state) => const name(),
+    path: "/Login",
+    builder: (context, state) => const Login(),
   ),
   GoRoute(
     path: "/Locallization",

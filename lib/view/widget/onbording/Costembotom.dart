@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/controller/cubit/onboardingcontroll_cubit.dart';
+import 'package:untitled/controller/cubit_onboarding/onboardingcontroll_cubit.dart';
 import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/core/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/core/my%20core/get_it/get_it.dart';

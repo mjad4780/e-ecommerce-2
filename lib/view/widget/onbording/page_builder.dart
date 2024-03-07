@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/controller/cubit/onboardingcontroll_cubit.dart';
+import 'package:untitled/controller/cubit_onboarding/onboardingcontroll_cubit.dart';
 import 'package:untitled/data/model/onbording.dart';
 
 class page_builder extends StatelessWidget {
