@@ -20,11 +20,8 @@ class page_builder extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Text(
-                onboidin[index].title,
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-              ),
+              Text(onboidin[index].title,
+                  style: Theme.of(context).textTheme.bodyLarge),
               const SizedBox(
                 height: 120,
               ),

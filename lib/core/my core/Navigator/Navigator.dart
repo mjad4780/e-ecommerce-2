@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:untitled/core/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/core/my%20core/get_it/get_it.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
 
 final GoRouter router = GoRouter(routes: [
@@ -16,10 +17,10 @@ final GoRouter router = GoRouter(routes: [
     path: "/name",
     builder: (context, state) => const name(),
   ),
-  // GoRoute(
-  //   path: "/Login",
-  //   builder: (context, state) => Login(),
-  // ),
+  GoRoute(
+    path: "/Locallization",
+    builder: (context, state) => const Language(),
+  ),
   // GoRoute(
   //   path: "/Rigster",
   //   builder: (context, state) => Rigster(),

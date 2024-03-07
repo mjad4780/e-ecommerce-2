@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:untitled/core/locallization/applocal.dart';
 import 'package:untitled/core/my core/databases/cache/cache_helper.dart';
 import 'package:untitled/core/my core/get_it/get_it.dart';
 import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
@@ -16,7 +18,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: router);
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+      theme: Themes(),
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      localeResolutionCallback: (devicelocale, supportedLocales) {
+        for (var locale in supportedLocales) {
+          if (devicelocale != null &&
+              devicelocale.languageCode == locale.languageCode) {
+            return devicelocale;
+          }
+        }
+        return supportedLocales.first;
+      },
+    );
+  }
+
+  ThemeData Themes() {
+    return ThemeData(
+        textTheme: const TextTheme(
+            bodyLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)));
   }
 }
 
@@ -25,9 +53,13 @@ class name extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 100,
-        width: double.infinity,
-        child: Image.asset('assets/images/illustration2.png'));
+    return Scaffold(
+      body: SizedBox(
+          height: 100,
+          width: double.infinity,
+          child: Center(
+              child:
+                  Text(AppLocalizations.of(context)!.translate('hello_msg')))),
+    );
   }
 }
