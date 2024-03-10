@@ -25,7 +25,9 @@ class ResetPassword extends StatelessWidget {
                 .copyWith(color: ColorManager.grey)),
       ),
       body: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          push(context, '/Login');
+        },
         builder: (context, state) {
           final cubit = BlocProvider.of<AuthCubit>(context);
 
@@ -33,7 +35,7 @@ class ResetPassword extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
             child: Form(
               autovalidateMode: cubit.autovalidateMode,
-              // key: cubit.formstatenewpassword,
+              key: cubit.formstatenewpassword,
               child: ListView(children: [
                 const SizedBox(height: 20),
                 CustomTextTitleAuth(text: "35".tr(context)),
@@ -43,7 +45,7 @@ class ResetPassword extends StatelessWidget {
                 CustomTextFormAuth(
                   isNumber: false,
                   valid: (val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 9, text: '');
 
                     // return validInput(val!, 3, 40, "password");
                   },
@@ -57,7 +59,7 @@ class ResetPassword extends StatelessWidget {
                   isNumber: false,
 
                   valid: (val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 9, text: '');
 
                     // return validInput(val!, 3, 40, "password");
                   },
@@ -70,7 +72,12 @@ class ResetPassword extends StatelessWidget {
                 CustomButtomAuth(
                     text: "33".tr(context),
                     onPressed: () {
-                      push(context, '/Success_page');
+                      if (cubit.formstatenewpassword.currentState!.validate()) {
+                        cubit.dispose3();
+                        push(context, '/Success_page');
+                      } else {
+                        cubit.autovalidateMode = AutovalidateMode.always;
+                      }
                       // controller.goToSuccessResetPassword();
                     }),
                 const SizedBox(height: 40),

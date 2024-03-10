@@ -46,14 +46,14 @@ class Sign_up extends StatelessWidget {
                   labeltext: "20".tr(context),
                   mycontroller: cubit.username,
                   valid: (String? val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 5, text: '');
                   },
                 ),
                 const SizedBox(height: 16),
                 CustomTextFormAuth(
                   mycontroller: cubit.emailSignUp,
                   valid: (String? val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 12, text: '');
                   },
                   isNumber: false,
                   hinttext: "12".tr(context),
@@ -62,14 +62,13 @@ class Sign_up extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 CustomTextFormAuth(
-                  isNumber: false,
-
+                  isNumber: true,
                   hinttext: "22".tr(context),
                   iconData: Icons.phone_android_outlined,
                   labeltext: "21".tr(context),
                   mycontroller: cubit.phome,
                   valid: (String? val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 10, text: '');
                   },
                   // mycontroller: ,
                 ),
@@ -81,7 +80,7 @@ class Sign_up extends StatelessWidget {
                   labeltext: "19".tr(context),
                   mycontroller: cubit.passwordSign_up,
                   valid: (String? val) {
-                    return null;
+                    return cubit.very(val: val!, max: 50, min: 9, text: '');
                   },
                   // mycontroller: ,
                 ),
@@ -89,7 +88,12 @@ class Sign_up extends StatelessWidget {
                 CustomButtomAuth(
                     text: "17".tr(context),
                     onPressed: () {
-                      push(context, '/Check_Code');
+                      if (cubit.formstateSign_up.currentState!.validate()) {
+                        cubit.dispose3();
+                        push(context, '/Check_Code');
+                      } else {
+                        cubit.autovalidateMode = AutovalidateMode.always;
+                      }
                     }),
                 const SizedBox(height: 40),
                 CustomTextSignUpOrSignIn(

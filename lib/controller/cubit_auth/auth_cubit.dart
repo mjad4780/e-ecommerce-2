@@ -56,5 +56,14 @@ class AuthCubit extends Cubit<AuthState> {
   dispose3() {
     email.clear();
     Password.clear();
+
+    username.clear();
+    phome.clear();
+    passwordSign_up.clear();
+    emailSignUp.clear();
+
+    emailForGet_Password.clear();
+    repassword.clear();
+    newpassword.clear();
   }
 }

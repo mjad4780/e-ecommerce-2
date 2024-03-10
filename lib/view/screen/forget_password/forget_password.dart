@@ -30,7 +30,7 @@ class forget_password extends StatelessWidget {
           final cubit = BlocProvider.of<AuthCubit>(context);
 
           return Form(
-            // key: cubit.formstateforgetpasword,
+            key: cubit.formstateforgetpasword,
             autovalidateMode: cubit.autovalidateMode,
             child: ListView(
               children: [
@@ -51,7 +51,7 @@ class forget_password extends StatelessWidget {
                     labeltext: "18".tr(context),
                     mycontroller: cubit.emailForGet_Password,
                     valid: (String? val) {
-                      return null;
+                      return cubit.very(val: val!, max: 50, min: 15, text: '');
                     },
                     // mycontroller: ,
                   ),
@@ -60,7 +60,13 @@ class forget_password extends StatelessWidget {
                 CustomButtomAuth(
                     text: "30".tr(context),
                     onPressed: () {
-                      push(context, '/ResetPassword');
+                      if (cubit.formstateforgetpasword.currentState!
+                          .validate()) {
+                        cubit.dispose3();
+                        push(context, '/ResetPassword');
+                      } else {
+                        cubit.autovalidateMode = AutovalidateMode.always;
+                      }
                     }),
                 const SizedBox(height: 40),
               ],

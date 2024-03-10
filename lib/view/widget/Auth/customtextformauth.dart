@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 
@@ -37,6 +38,8 @@ class CustomTextFormAuth extends StatelessWidget {
       child: TextFormField(
         obscureText: obscureText && cubit.obscureText,
         onSaved: onSaved,
+        keyboardType:
+            isNumber == true ? TextInputType.number : TextInputType.text,
         validator: valid,
         controller: mycontroller,
         decoration: InputDecoration(

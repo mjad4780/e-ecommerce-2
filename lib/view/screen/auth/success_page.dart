@@ -33,8 +33,12 @@ class Success_page extends StatelessWidget {
               haigh: 55,
               text: 'Okay',
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const Login()));
+                router.go('/Login');
+
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(builder: (context) => const Login()),
+                // );
+
                 // push(context, '/Login');
               },
             )

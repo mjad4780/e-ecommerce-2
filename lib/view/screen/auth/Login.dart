@@ -12,6 +12,8 @@ import 'package:untitled/view/widget/Auth/customtexttitleauth.dart';
 import 'package:untitled/view/widget/Auth/logoauth.dart';
 import 'package:untitled/view/widget/Auth/textsignup.dart';
 
+GlobalKey<FormState> formstate = GlobalKey<FormState>();
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -30,7 +32,7 @@ class Login extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               child: Form(
-                key: cubit.formstate,
+                key: formstate,
                 autovalidateMode: cubit.autovalidateMode,
                 child: ListView(children: [
                   const LogoAuth(),
@@ -68,7 +70,8 @@ class Login extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      push(context, '/forget_password');
+                      router.go('/forget_password');
+                      // push(context, '/forget_password');
                     },
                     child: Text(
                       "14".tr(context),
@@ -78,9 +81,9 @@ class Login extends StatelessWidget {
                   CustomButtomAuth(
                       text: "15".tr(context),
                       onPressed: () {
-                        if (cubit.formstate.currentState!.validate()) {
+                        if (formstate.currentState!.validate()) {
                           cubit.dispose3();
-                          push(context, '/Sign_up');
+                          print('object');
                         } else {
                           cubit.autovalidateMode = AutovalidateMode.always;
                         }
