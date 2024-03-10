@@ -18,7 +18,7 @@ class botom_language extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 100),
         child: MaterialButton(
           onPressed: onPressed,
-          color: ColorManager.blue,
+          color: ColorManager.primaryColor,
           child: Text(
             language,
           ),

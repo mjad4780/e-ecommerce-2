@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_onboarding/onboardingcontroll_cubit.dart';
+import 'package:untitled/core/locallization/applocal.dart';
 import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/core/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/core/my%20core/get_it/get_it.dart';
@@ -17,35 +18,23 @@ class costembotom extends StatelessWidget {
     return BlocConsumer<OnboardingcontrollCubit, OnboardingcontrollState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return cubit.current == onboidin.length - 1
-            ? Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                child: MaterialButton(
-                  onPressed: () {
-                    getIt<CacheHelper>()
-                        .saveData(key: 'onbourding', value: true);
-                    pushpushReplacement(context, '/name');
-                  },
-                  height: 40,
-                  minWidth: 333,
-                  color: ColorManager.blue,
-                  child: const Text('next'),
-                ),
-              )
-            : Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                child: MaterialButton(
-                  onPressed: () {
-                    cubit.next();
-                  },
-                  height: 40,
-                  minWidth: 333,
-                  color: ColorManager.blue,
-                  child: const Text('contenu'),
-                ),
-              );
+        return Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
+          child: MaterialButton(
+            onPressed: () {
+              if (cubit.current == onboidin.length - 1) {
+                getIt<CacheHelper>().saveData(key: 'onbourding', value: true);
+                pushpushReplacement(context, "/Login");
+              } else {
+                cubit.next();
+              }
+            },
+            height: 40,
+            minWidth: 333,
+            color: ColorManager.primaryColor,
+            child: Text('8'.tr(context)),
+          ),
+        );
       },
     );
   }

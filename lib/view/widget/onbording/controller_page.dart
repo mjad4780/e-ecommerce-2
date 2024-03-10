@@ -26,7 +26,7 @@ class Controller_page extends StatelessWidget {
                       margin: const EdgeInsets.all(6),
                       width: cubit.current == i ? 22 : 6,
                       height: 6,
-                      color: ColorManager.blue,
+                      color: ColorManager.primaryColor,
                     ))
           ],
         );

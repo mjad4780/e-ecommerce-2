@@ -12,13 +12,9 @@ class Language extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-      ),
-      drawer: const Drawer(),
       body: BlocConsumer<TranslateCubit, TranslateState>(
         listener: (context, state) {
-          pushpushReplacement(context, '/Login');
+          pushpushReplacement(context, '/Onboading');
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<TranslateCubit>(context);
@@ -29,7 +25,7 @@ class Language extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.translate('kkkk'),
+                    'kkkk'.tr(context),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),

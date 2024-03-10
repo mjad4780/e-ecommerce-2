@@ -12,5 +12,25 @@ class Assets {
   /// Assets for imagesIllustration3
   /// assets/images/illustration3.png
   static const String imagesIllustration3 = "assets/images/illustration3.png";
+
+  /// Assets for imagesLogo
+  /// assets/images/logo.png
+  static const String imagesLogo = "assets/images/logo.png";
+
+  /// Assets for imagesLogoapp
+  /// assets/images/logoapp.png
+  static const String imagesLogoapp = "assets/images/logoapp.png";
+
+  /// Assets for imagesOne
+  /// assets/images/one.PNG
+  static const String imagesOne = "assets/images/one.PNG";
+
+  /// Assets for imagesThree
+  /// assets/images/three.PNG
+  static const String imagesThree = "assets/images/three.PNG";
+
+  /// Assets for imagesTwo
+  /// assets/images/two.PNG
+  static const String imagesTwo = "assets/images/two.PNG";
 }
 

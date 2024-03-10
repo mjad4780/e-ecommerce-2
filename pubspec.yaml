@@ -54,6 +54,7 @@ dependencies:
   geocoding: ^2.1.1
   flutter_localizations:
         sdk: flutter
+  flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
 
@@ -78,8 +79,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+
    - lib\core\locallization\en.json
    - lib\core\locallization\ar.json
+   - assets/images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -91,11 +94,18 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #  - family: Montserrat
-  #    fonts:
-  #      - asset: assets/fonts/Montserrat-Bold.ttf
-  #        weight: 700
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo/Cairo-Bold.ttf
+          weight: 700
+
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
+          weight: 700
       
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
