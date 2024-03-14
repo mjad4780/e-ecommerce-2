@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
-import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
 
 class MaterialApp2 extends StatelessWidget {
   const MaterialApp2({super.key});

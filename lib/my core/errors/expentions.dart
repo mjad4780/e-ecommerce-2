@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:untitled/core/my core/errors/error_model.dart';
+import 'package:untitled/my core/errors/error_model.dart';
 
 //!ServerException
 class ServerException implements Exception {

@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:untitled/core/constans/apptheme.dart';
 import 'package:untitled/core/locallization/applocal.dart';
-import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
-import 'package:untitled/core/my%20core/resources/color_manager.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/my%20core/resources/color_manager.dart';
 
 class Check_Code2 extends StatelessWidget {
   const Check_Code2({super.key});

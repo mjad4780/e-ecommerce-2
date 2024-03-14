@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
-import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/view/screen/auth/Signup.dart';
 
 part 'auth_state.dart';

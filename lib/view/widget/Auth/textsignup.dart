@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/core/my%20core/resources/color_manager.dart';
+import 'package:untitled/my%20core/resources/color_manager.dart';
 
 class CustomTextSignUpOrSignIn extends StatelessWidget {
   final String textone;

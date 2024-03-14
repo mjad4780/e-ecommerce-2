@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:untitled/core/my core/databases/api/api_consumer.dart';
-import 'package:untitled/core/my core/databases/api/api_interceptors.dart';
-import 'package:untitled/core/my core/databases/api/end_ponits.dart';
-import 'package:untitled/core/my core/errors/expentions.dart';
+import 'package:untitled/my core/databases/api/api_consumer.dart';
+import 'package:untitled/my core/databases/api/api_interceptors.dart';
+import 'package:untitled/my core/databases/api/end_ponits.dart';
+import 'package:untitled/my core/errors/expentions.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;

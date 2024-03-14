@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:untitled/core/my%20core/databases/cache/cache_helper.dart';
-import 'package:untitled/core/my%20core/get_it/get_it.dart';
+import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
+import 'package:untitled/my%20core/get_it/get_it.dart';
 
 part 'translate_state.dart';
 

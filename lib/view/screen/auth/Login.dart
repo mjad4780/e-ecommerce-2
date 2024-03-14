@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
-import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
-import 'package:untitled/core/my%20core/resources/color_manager.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/my%20core/resources/color_manager.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
 import 'package:untitled/view/widget/Auth/custombuttonauth.dart';
 import 'package:untitled/view/widget/Auth/customtextbodyauth.dart';
@@ -93,7 +93,9 @@ class Login extends StatelessWidget {
                     textone: "16".tr(context),
                     texttwo: "17".tr(context),
                     onTap: () {
-                      push(context, '/Sign_up');
+                      router.go('/Sign_up');
+
+                      // push(context, '/Sign_up');
                     },
                   )
                 ]),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_onboarding/onboardingcontroll_cubit.dart';
-import 'package:untitled/core/my%20core/resources/color_manager.dart';
+import 'package:untitled/my%20core/resources/color_manager.dart';
 import 'package:untitled/data/model/onbording.dart';
 
 class Controller_page extends StatelessWidget {

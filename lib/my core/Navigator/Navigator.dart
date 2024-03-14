@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:untitled/core/my%20core/databases/cache/cache_helper.dart';
-import 'package:untitled/core/my%20core/get_it/get_it.dart';
+import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
+import 'package:untitled/my%20core/get_it/get_it.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
@@ -12,9 +12,11 @@ import 'package:untitled/view/screen/forget_password/forget_password.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
 import 'package:untitled/view/screen/forget_password/resetpassword.dart';
 import 'package:untitled/view/screen/forget_password/success_page.dart';
+import 'package:untitled/view/screen/test.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(path: "/", builder: (context, state) => Login()
+  GoRoute(path: "/", builder: (context, state) => const Test()
+      //  const Login()
       // const Language()
       // getIt<CacheHelper>().getData(key: 'onbourding') == true
       //     ? const Language()
@@ -22,7 +24,7 @@ final GoRouter router = GoRouter(routes: [
       ),
   GoRoute(
     path: "/Login",
-    builder: (context, state) => Login(),
+    builder: (context, state) => const Login(),
   ),
   GoRoute(
     path: "/Locallization",

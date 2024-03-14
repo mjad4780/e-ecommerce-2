@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/core/locallization/applocal.dart';
-import 'package:untitled/core/my%20core/Navigator/Navigator.dart';
-import 'package:untitled/core/my%20core/resources/assets_manager.dart';
-import 'package:untitled/core/my%20core/resources/color_manager.dart';
+
 import 'package:untitled/data/datasourse/static/assets.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/my%20core/resources/color_manager.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
 import 'package:untitled/view/widget/Auth/custombuttonauth.dart';
 
@@ -25,23 +25,22 @@ class Success_page extends StatelessWidget {
               size: 200,
               color: ColorManager.primaryColor,
             )),
-            const SizedBox(
-              height: 110,
-            ),
-            CustomButtomAuth(
-              width: double.infinity,
-              haigh: 55,
-              text: 'Okay',
-              onPressed: () {
-                router.go('/Login');
+            SizedBox(
+                height: 110,
+                child: CustomButtomAuth(
+                  width: double.infinity,
+                  haigh: 55,
+                  text: 'Okay',
+                  onPressed: () {
+                    router.go('/Login');
 
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(builder: (context) => const Login()),
-                // );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(builder: (context) => const Login()),
+                    // );
 
-                // push(context, '/Login');
-              },
-            )
+                    // push(context, '/Login');
+                  },
+                ))
           ],
         ),
       ),

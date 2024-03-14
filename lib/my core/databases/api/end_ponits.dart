@@ -1,5 +1,13 @@
 class EndPoint {
-  static String baseUrl = "https://student.valuxapps.com/api/";
+  // static String baseUrl = "https://student.valuxapps.com/api/";
+  static String baseUrl = "http://10.0.2.2/e-ecommerse";
+  static String baseUrl2 = "http://10.0.2.2/e-ecommerse/test.php";
+
+//ده خاص باالاميلوتر لانه غير مرفوع علي استضافه
+  static String test = "$baseUrl/test.php";
+
+  static String Sugin_up = "$baseUrl/auth/sign_up.php";
+  static String linklogin = "$baseUrl/auth/login.php";
 
   static String signIn = "login";
 

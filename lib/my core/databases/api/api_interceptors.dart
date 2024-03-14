@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:untitled/core/my core/databases/api/end_ponits.dart';
-import 'package:untitled/core/my core/databases/cache/cache_helper.dart';
-import 'package:untitled/core/my core/get_it/get_it.dart';
+import 'package:untitled/my core/databases/api/end_ponits.dart';
+import 'package:untitled/my core/databases/cache/cache_helper.dart';
+import 'package:untitled/my core/get_it/get_it.dart';
 
 class ApiInterceptor extends Interceptor {
   @override
@@ -12,9 +12,7 @@ class ApiInterceptor extends Interceptor {
     options.headers['Content-Type'] = "application/json";
 
     options.headers['Authorization'] =
-        getIt<CacheHelper>().getDataString(key: ApiKey.token) != null
-            ? getIt<CacheHelper>().getDataString(key: ApiKey.token)
-            : null;
+        getIt<CacheHelper>().getDataString(key: ApiKey.token);
 
     super.onRequest(options, handler);
   }
