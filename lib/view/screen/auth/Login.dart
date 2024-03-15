@@ -95,7 +95,7 @@ class Login extends StatelessWidget {
                     onTap: () {
                       router.go('/Sign_up');
 
-                      // push(context, '/Sign_up');
+                      //  push(context, '/Sign_up');
                     },
                   )
                 ]),

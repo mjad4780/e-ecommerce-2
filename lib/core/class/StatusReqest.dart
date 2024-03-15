@@ -4,17 +4,6 @@ enum StatusReqest {
   success,
   failure,
   serverfailure,
-  offlinefailure
+  offlinefailure,
+  serverExpition
 }
-
-// class StatusReqest2 {
-// // الاخطاء او المشاكل المحتمله
-// laoding,
-// success,
-// failure,
-// serverfailure,
-// offlinefailure
-
-
-
-// }

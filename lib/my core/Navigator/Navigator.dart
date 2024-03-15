@@ -15,8 +15,7 @@ import 'package:untitled/view/screen/forget_password/success_page.dart';
 import 'package:untitled/view/screen/test.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(path: "/", builder: (context, state) => const Test()
-      //  const Login()
+  GoRoute(path: "/", builder: (context, state) => const Login()
       // const Language()
       // getIt<CacheHelper>().getData(key: 'onbourding') == true
       //     ? const Language()

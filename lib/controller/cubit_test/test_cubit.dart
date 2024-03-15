@@ -29,17 +29,18 @@ class TestCubit extends Cubit<TestState> {
   getDate() async {
     statusReqest = StatusReqest.laoding;
     var response = await testdata.getData();
-    print(
-        '#######################################################################');
-    print(response);
 
     statusReqest = handingdata(response);
 
     if (StatusReqest.success == statusReqest) {
+      if (response['status'] == "success") {
+        deta.addAll(response['data']);
+        print(deta);
+      } else {
+        statusReqest = StatusReqest.failure;
+      }
       // test = Data.fromJson(response['data']);
       //print(test);
-      deta.addAll(response['data']);
-      print(deta);
     }
     emit(Testgetdate());
   }

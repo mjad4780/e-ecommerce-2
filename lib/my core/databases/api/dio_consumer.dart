@@ -78,12 +78,10 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future post(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFromData = false,
-  }) async {
+  Future post(String path,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFromData = false}) async {
     try {
       final response = await dio.post(
         path,
@@ -97,3 +95,24 @@ class DioConsumer extends ApiConsumer {
     }
   }
 }
+
+  // @override
+  // Future post(
+  //   String path, {
+  //   Map<String, dynamic>? data,
+  //   Map<String, dynamic>? queryParameters,
+  //   bool isFromData = false,
+  // }) async {
+  //   try {
+  //     final response = await dio.post(
+  //       path,
+  //       data: isFromData ? FormData.fromMap(data!) : data,
+  //       queryParameters: queryParameters,
+  //     );
+
+  //     return response.data;
+  //   } on DioException catch (e) {
+  //     handleDioException(e);
+  //   }
+  // }
+ 
