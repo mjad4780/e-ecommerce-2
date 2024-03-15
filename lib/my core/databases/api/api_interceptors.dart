@@ -9,7 +9,7 @@ class ApiInterceptor extends Interceptor {
 //options.queryParameters[]
     options.headers['Accept-Language'] = "ar";
 
-    options.headers['Content-Type'] = "application/json";
+    // options.headers['Content-Type'] = "application/json";
 
     options.headers['Authorization'] =
         getIt<CacheHelper>().getDataString(key: ApiKey.token);

@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
+import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
@@ -30,7 +31,9 @@ class MyApp extends StatelessWidget {
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
         BlocProvider(
-            create: (context) => AuthCubit(Api: DioConsumer(dio: Dio())))
+            create: (context) => AuthCubit(
+                Api: getIt<DioConsumer>(),
+                networkInfo: getIt<NetworkInfoImpl>()))
       ],
       child: const MaterialApp2(),
     );

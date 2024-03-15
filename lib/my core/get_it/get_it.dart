@@ -16,7 +16,7 @@ void setupServise() {
   getIt.registerSingleton<DataConnectionChecker>(DataConnectionChecker());
   getIt.registerSingleton<NetworkInfoImpl>(
       NetworkInfoImpl(getIt<DataConnectionChecker>()));
-  getIt.registerSingleton<Crud>(
-      Crud(api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>()));
+  // getIt.registerSingleton<Crud>(
+  //     Crud(api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>()));
   // getIt.registerSingleton<StatusReqest>( StatusReqest());
 }

@@ -33,7 +33,7 @@ class Sign_up extends StatelessWidget {
         builder: (context, state) {
           final cubit = BlocProvider.of<AuthCubit>(context);
 
-          return state is loadingSignup
+          return cubit.statusReqest == StatusReqest.laoding
               ? const Center(child: CircularProgressIndicator())
               : Container(
                   padding:
@@ -102,13 +102,7 @@ class Sign_up extends StatelessWidget {
                       CustomButtomAuth(
                           text: "17".tr(context),
                           onPressed: () {
-                            if (cubit.formstateSign_up.currentState!
-                                .validate()) {
-                              cubit.signUp1();
-                              // cubit.dispose3();
-                            } else {
-                              cubit.autovalidateMode = AutovalidateMode.always;
-                            }
+                            cubit.SSSS();
                           }),
                       const SizedBox(height: 40),
                       CustomTextSignUpOrSignIn(
