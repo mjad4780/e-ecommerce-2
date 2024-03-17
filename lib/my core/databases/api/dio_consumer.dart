@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:untitled/my core/databases/api/api_consumer.dart';
 import 'package:untitled/my core/databases/api/api_interceptors.dart';
@@ -88,8 +90,8 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-
-      return response.data;
+      var vvvv = jsonDecode(response.data);
+      return vvvv;
     } on DioException catch (e) {
       handleDioException(e);
     }

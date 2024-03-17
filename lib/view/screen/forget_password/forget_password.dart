@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
+import 'package:untitled/controller/cubit_auth/cubit/forget_password_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/resources/color_manager.dart';
@@ -24,10 +25,11 @@ class forget_password extends StatelessWidget {
             style: const TextStyle(fontSize: 20)
                 .copyWith(color: ColorManager.grey)),
       ),
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cubit = BlocProvider.of<AuthCubit>(context);
+          final cubit = BlocProvider.of<ForgetPasswordCubit>(context);
+          final cubit1 = BlocProvider.of<AuthCubit>(context);
 
           return Form(
             key: cubit.formstateforgetpasword,
@@ -51,7 +53,7 @@ class forget_password extends StatelessWidget {
                     labeltext: "18".tr(context),
                     mycontroller: cubit.emailForGet_Password,
                     valid: (String? val) {
-                      return cubit.very(val: val!, max: 50, min: 15, text: '');
+                      return cubit1.very(val: val!, max: 50, min: 15, text: '');
                     },
                     // mycontroller: ,
                   ),
@@ -62,7 +64,7 @@ class forget_password extends StatelessWidget {
                     onPressed: () {
                       if (cubit.formstateforgetpasword.currentState!
                           .validate()) {
-                        cubit.dispose3();
+                        cubit.dispose();
                         push(context, '/ResetPassword');
                       } else {
                         cubit.autovalidateMode = AutovalidateMode.always;

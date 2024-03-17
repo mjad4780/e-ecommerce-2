@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
+import 'package:untitled/controller/cubit_auth/cubit/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => AuthCubit(
+                Api: getIt<DioConsumer>(),
+                networkInfo: getIt<NetworkInfoImpl>())),
+        BlocProvider(
+            create: (context) => ForgetPasswordCubit(
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>()))
       ],

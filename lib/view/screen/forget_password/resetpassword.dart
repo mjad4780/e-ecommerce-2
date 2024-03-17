@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
+import 'package:untitled/controller/cubit_auth/cubit/forget_password_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/resources/color_manager.dart';
@@ -24,12 +25,13 @@ class ResetPassword extends StatelessWidget {
             style: const TextStyle(fontSize: 23)
                 .copyWith(color: ColorManager.grey)),
       ),
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listener: (context, state) {
           push(context, '/Login');
         },
         builder: (context, state) {
-          final cubit = BlocProvider.of<AuthCubit>(context);
+          final cubit = BlocProvider.of<ForgetPasswordCubit>(context);
+          final cubit1 = BlocProvider.of<AuthCubit>(context);
 
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
@@ -45,7 +47,7 @@ class ResetPassword extends StatelessWidget {
                 CustomTextFormAuth(
                   isNumber: false,
                   valid: (val) {
-                    return cubit.very(val: val!, max: 50, min: 9, text: '');
+                    return cubit1.very(val: val!, max: 50, min: 9, text: '');
 
                     // return validInput(val!, 3, 40, "password");
                   },
@@ -59,7 +61,7 @@ class ResetPassword extends StatelessWidget {
                   isNumber: false,
 
                   valid: (val) {
-                    return cubit.very(val: val!, max: 50, min: 9, text: '');
+                    return cubit1.very(val: val!, max: 50, min: 9, text: '');
 
                     // return validInput(val!, 3, 40, "password");
                   },
@@ -73,7 +75,7 @@ class ResetPassword extends StatelessWidget {
                     text: "33".tr(context),
                     onPressed: () {
                       if (cubit.formstatenewpassword.currentState!.validate()) {
-                        cubit.dispose3();
+                        cubit.dispose();
                         push(context, '/Success_page');
                       } else {
                         cubit.autovalidateMode = AutovalidateMode.always;

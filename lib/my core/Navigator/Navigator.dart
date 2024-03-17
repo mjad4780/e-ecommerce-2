@@ -12,6 +12,7 @@ import 'package:untitled/view/screen/forget_password/forget_password.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
 import 'package:untitled/view/screen/forget_password/resetpassword.dart';
 import 'package:untitled/view/screen/forget_password/success_page.dart';
+import 'package:untitled/view/screen/home/home.dart';
 import 'package:untitled/view/screen/test.dart';
 
 final GoRouter router = GoRouter(routes: [
@@ -60,6 +61,11 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/Check_Code2",
     builder: (context, state) => const Check_Code2(),
+  ),
+
+  GoRoute(
+    path: "/Home_page",
+    builder: (context, state) => const Home_page(),
   ),
 ]);
 

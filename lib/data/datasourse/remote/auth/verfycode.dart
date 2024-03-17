@@ -1,33 +1,31 @@
-import 'package:untitled/core/class/Crud.dart';
+import 'dart:convert';
+
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
-import 'package:untitled/my%20core/errors/expentions.dart';
 
-class ClassName {
+class VerfyCode {
   final NetworkInfo networkInfo;
   final ApiConsumer Api;
 
-  ClassName({required this.networkInfo, required this.Api});
+  VerfyCode({required this.networkInfo, required this.Api});
 
-  signUp1(
-    String username,
+  verfycode(
+    String verfycode,
     String email,
-    String phone,
-    String password,
   ) async {
     // if (await networkInfo.isConnected!) {
     var response = await Api.post(
-      EndPoint.Sugin_up,
+      EndPoint.verfycode,
       isFromData: true,
       data: {
-        'username': username,
         'email': email,
-        'phone': phone,
-        'password': password
+        'verfycode': verfycode,
       },
     );
+
+    print('##########################$email');
     // } else {
     //   return StatusReqest.offlinefailure;
     // }

@@ -20,3 +20,26 @@ final class failer extends AuthState {
   failer({required this.ss});
 }
 // final class disposeer extends AuthState {}
+
+//verfycode
+final class SuccessVerfycode extends AuthState {}
+
+final class failerverfycode extends AuthState {
+  // final String ss;
+
+  // failerverfycode({required this.ss});
+}
+
+final class serverfailer extends AuthState {}
+// final class SuccessSignup extends AuthState {}
+
+//////////Login//////////
+final class Loginloading extends AuthState {}
+
+final class LoginSuccess extends AuthState {}
+
+final class LoginFailer extends AuthState {}
+
+final class LoginFailernodata extends AuthState {}
+
+final class LoginFailerExpition extends AuthState {}

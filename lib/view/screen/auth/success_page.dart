@@ -15,9 +15,9 @@ class Success_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Center(
                 child: Icon(
@@ -26,10 +26,10 @@ class Success_page extends StatelessWidget {
               color: ColorManager.primaryColor,
             )),
             SizedBox(
-                height: 110,
+                height: 62,
                 child: CustomButtomAuth(
                   width: double.infinity,
-                  haigh: 55,
+                  haigh: 11,
                   text: 'Okay',
                   onPressed: () {
                     router.go('/Login');

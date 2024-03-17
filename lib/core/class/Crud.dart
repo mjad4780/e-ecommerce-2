@@ -1,31 +1,33 @@
-// import 'dart:convert';
+import 'dart:convert';
 
-// import 'package:dartz/dartz.dart';
-// import 'package:dio/dio.dart';
-// import 'package:untitled/core/class/StatusReqest.dart';
-// import 'package:untitled/core/function/handingdata.dart';
-// import 'package:untitled/my%20core/connection/network_info.dart';
-// import 'package:untitled/my%20core/databases/api/api_consumer.dart';
-// import 'package:http/http.dart' as https;
-// import 'package:untitled/my%20core/databases/api/end_ponits.dart';
-// import 'package:untitled/my%20core/errors/expentions.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:untitled/core/class/StatusReqest.dart';
+import 'package:untitled/core/function/handingdata.dart';
+import 'package:untitled/my%20core/connection/network_info.dart';
+import 'package:untitled/my%20core/databases/api/api_consumer.dart';
+import 'package:untitled/my%20core/databases/api/end_ponits.dart';
+import 'package:untitled/my%20core/errors/expentions.dart';
 
-// // class Crud1 {
-// //   final NetworkInfo networkInfo;
-// //   final ApiConsumer Api;
-// //   StatusReqest? statusReqest;
+class Crud1 {
+  final NetworkInfo networkInfo;
+  final ApiConsumer Api;
+  StatusReqest? statusReqest;
 
-// //   Crud1({required this.Api, required this.networkInfo});
+  Crud1({required this.Api, required this.networkInfo});
 
-// //   Future<Either<StatusReqest, dynamic>> signUp1({required Map data}) async {
-// //     try {
-// //       var response = await Api.post(EndPoint.Sugin_up, data: data);
-// //       return Right(response);
-// //     } catch (e) {
-// //       return const Left(StatusReqest.serverExpition);
-// //     }
-// //   }
-// // }
+  Future<Either<StatusReqest, dynamic>> Postdate(
+      {required Map data, required String paseurl}) async {
+    //if (await networkInfo.isConnected!) {
+    var response = await Api.post(paseurl, data: data, isFromData: true);
+    if (response['status'] == 'success') {}
+    return Right(response);
+    //  return const Left(StatusReqest.serverfailure);
+    // } else {
+    //   return left(StatusReqest.offlinefailure);
+    // }
+  }
+}
 
 // //   postData(
 // //       String linkurl, Map data) async {

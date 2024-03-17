@@ -1,19 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
-import 'package:untitled/core/class/Crud.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/core/function/handingdata.dart';
+import 'package:untitled/data/datasourse/remote/auth/login.dart';
 import 'package:untitled/data/datasourse/remote/auth/sign_up.dart';
-import 'package:untitled/data/datasourse/remote/test_data.dart';
-import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
-import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/errors/expentions.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
-import 'package:untitled/view/screen/auth/Signup.dart';
 
 part 'auth_state.dart';
 
@@ -21,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.Api, required this.networkInfo})
       : super(AuthInitial());
   final ApiConsumer Api;
-  StatusReqest? statusReqest;
+  StatusReqest? statusReqest = StatusReqest.none;
   final NetworkInfo networkInfo;
 
   //Login
@@ -36,12 +32,6 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController phone = TextEditingController();
   TextEditingController passwordSign_up = TextEditingController();
   GlobalKey<FormState> formstateSign_up = GlobalKey<FormState>();
-//forget_password
-  TextEditingController emailForGet_Password = TextEditingController();
-  TextEditingController newpassword = TextEditingController();
-  TextEditingController repassword = TextEditingController();
-  GlobalKey<FormState> formstateforgetpasword = GlobalKey<FormState>();
-  GlobalKey<FormState> formstatenewpassword = GlobalKey<FormState>();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -55,10 +45,10 @@ class AuthCubit extends Cubit<AuthState> {
       return ' he isEmpty';
     }
     if (val.length > max) {
-      return 'no can input >$max';
+      return "can't be larger than $max";
     }
     if (val.length < min) {
-      return 'no can input <$min';
+      return "can't be less than $min";
     }
   }
 
@@ -92,7 +82,33 @@ class AuthCubit extends Cubit<AuthState> {
         autovalidateMode = AutovalidateMode.always;
       }
     } on ServerException catch (e) {
+      statusReqest = StatusReqest.failure;
+
       emit(failer(ss: e.errorModel.errorMessage));
+    }
+  }
+
+//////////////////////////////////////////////
+  LoginData loginData =
+      LoginData(getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
+  gggg() async {
+    try {
+      if (formstate.currentState!.validate()) {
+        emit(Loginloading());
+        statusReqest = StatusReqest.laoding;
+        var response = await loginData.Login_logic1(email.text, Password.text);
+        statusReqest = handingdata(response);
+        if (response['status'] == "success") {
+          emit(LoginSuccess());
+        } else {
+          emit(LoginFailernodata());
+        }
+      } else {
+        autovalidateMode = AutovalidateMode.always;
+      }
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+      emit(LoginFailer());
     }
   }
 
@@ -104,9 +120,5 @@ class AuthCubit extends Cubit<AuthState> {
     phone.clear();
     passwordSign_up.clear();
     emailSignUp.clear();
-
-    emailForGet_Password.clear();
-    repassword.clear();
-    newpassword.clear();
   }
 }
