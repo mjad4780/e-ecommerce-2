@@ -1,26 +1,22 @@
-import 'dart:convert';
-
+import 'package:untitled/core/class/Crud.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
+import 'package:untitled/core/function/handingdata.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 
-class VerfyCode {
+class CheckEmail {
   final ApiConsumer Api;
   StatusReqest? statusReqest;
   final NetworkInfo networkInfo;
 
-  VerfyCode(this.networkInfo, {required this.Api});
+  CheckEmail({required this.networkInfo, required this.Api});
 
-  verfyCode(
-    String verfycode,
-    String email,
-  ) async {
+  check_email(String email) async {
     // if (await networkInfo.isConnected!) {
-    var response = await Api.post(EndPoint.verfycode,
+    var response = await Api.post(EndPoint.check_email,
         data: {
           'email': email,
-          'verfycode': verfycode,
         },
         isFromData: true);
     return response;

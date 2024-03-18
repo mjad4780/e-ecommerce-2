@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/core/locallization/applocal.dart';
 
 import 'package:untitled/data/datasourse/static/assets.dart';
@@ -13,6 +15,8 @@ class Success_page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<AuthCubit>(context);
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(40),
@@ -32,6 +36,7 @@ class Success_page extends StatelessWidget {
                   haigh: 11,
                   text: 'Okay',
                   onPressed: () {
+                    cubit.dispose3();
                     router.go('/Login');
 
                     // Navigator.of(context).push(

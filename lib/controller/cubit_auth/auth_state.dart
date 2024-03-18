@@ -9,29 +9,23 @@ final class AuthInitiagkl extends AuthState {}
 
 final class disposeer extends AuthState {}
 
-//  auth
-final class loadingSignup extends AuthState {}
+///////////////SignUp////////////////
+final class Signuploading extends AuthState {}
 
-final class SuccessSignup extends AuthState {}
+final class SignupSuccess extends AuthState {}
 
-final class failer extends AuthState {
-  final String ss;
+final class SignUpfailer extends AuthState {}
 
-  failer({required this.ss});
-}
-// final class disposeer extends AuthState {}
+final class SignUpFailernodata extends AuthState {}
 
-//verfycode
+/////////////////////verfycode////////////////
+final class LoadingVerfycode extends AuthState {}
+
 final class SuccessVerfycode extends AuthState {}
 
-final class failerverfycode extends AuthState {
-  // final String ss;
+final class failerverfycode extends AuthState {}
 
-  // failerverfycode({required this.ss});
-}
-
-final class serverfailer extends AuthState {}
-// final class SuccessSignup extends AuthState {}
+final class verfycodeFailernodata extends AuthState {}
 
 //////////Login//////////
 final class Loginloading extends AuthState {}

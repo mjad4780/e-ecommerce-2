@@ -84,8 +84,8 @@ class Login extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        router.go('/forget_password');
-                        // push(context, '/forget_password');
+                        router.go('/Check_Email');
+                        // push(context, '/Check_Email');
                       },
                       child: Text(
                         "14".tr(context),
@@ -95,7 +95,7 @@ class Login extends StatelessWidget {
                     CustomButtomAuth(
                         text: "15".tr(context),
                         onPressed: () {
-                          cubit.gggg();
+                          cubit.Login_Data();
                         }),
                     const SizedBox(height: 40),
                     CustomTextSignUpOrSignIn(

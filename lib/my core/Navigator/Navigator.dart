@@ -8,7 +8,7 @@ import 'package:untitled/view/screen/auth/Login.dart';
 import 'package:untitled/view/screen/auth/Signup.dart';
 import 'package:untitled/view/screen/auth/check_code.dart';
 import 'package:untitled/view/screen/forget_password/check_code.dart';
-import 'package:untitled/view/screen/forget_password/forget_password.dart';
+import 'package:untitled/view/screen/forget_password/CheckEmail.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
 import 'package:untitled/view/screen/forget_password/resetpassword.dart';
 import 'package:untitled/view/screen/forget_password/success_page.dart';
@@ -47,22 +47,21 @@ final GoRouter router = GoRouter(routes: [
     builder: (context, state) => const Check_Code(),
   ),
   GoRoute(
-    path: "/forget_password",
-    builder: (context, state) => const forget_password(),
+    path: "/Check_Email",
+    builder: (context, state) => const Check_Email(),
   ),
   GoRoute(
     path: "/ResetPassword",
     builder: (context, state) => const ResetPassword(),
   ),
-  // GoRoute(
-  //   path: "/Success_page2",
-  //   builder: (context, state) => const Success_page2(),
-  // ),
   GoRoute(
-    path: "/Check_Code2",
-    builder: (context, state) => const Check_Code2(),
+    path: "/ResetPassword",
+    builder: (context, state) => const ResetPassword(),
   ),
-
+  GoRoute(
+    path: "/Check_code_forget",
+    builder: (context, state) => const Check_code_forget(),
+  ),
   GoRoute(
     path: "/Home_page",
     builder: (context, state) => const Home_page(),

@@ -5,11 +5,11 @@ import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/errors/expentions.dart';
 
-class ClassName {
+class SignUp {
   final NetworkInfo networkInfo;
   final ApiConsumer Api;
 
-  ClassName({required this.networkInfo, required this.Api});
+  SignUp({required this.networkInfo, required this.Api});
 
   signUp1(
     String username,
@@ -28,6 +28,8 @@ class ClassName {
         'password': password
       },
     );
+    return response;
+
     // } else {
     //   return StatusReqest.offlinefailure;
     // }

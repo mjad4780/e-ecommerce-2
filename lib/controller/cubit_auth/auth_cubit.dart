@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/core/function/handingdata.dart';
 import 'package:untitled/data/datasourse/remote/auth/login.dart';
 import 'package:untitled/data/datasourse/remote/auth/sign_up.dart';
+import 'package:untitled/data/datasourse/remote/auth/verfycode.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
@@ -59,12 +59,13 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthInitiagkl());
   }
 
-  ClassName className = ClassName(
-      networkInfo: getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
+  SignUp className =
+      SignUp(networkInfo: getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
 
-  SSSS() async {
+  sign_up() async {
     try {
       if (formstateSign_up.currentState!.validate()) {
+        emit(Signuploading());
         statusReqest = StatusReqest.laoding;
         var response = await className.signUp1(
           username.text,
@@ -73,25 +74,25 @@ class AuthCubit extends Cubit<AuthState> {
           passwordSign_up.text,
         );
         statusReqest = handingdata(response);
-        if (StatusReqest.success == statusReqest) {
-          emit(SuccessSignup());
+        if (response['status'] == "success") {
+          emit(SignupSuccess());
         } else {
-          statusReqest = StatusReqest.failure;
+          // statusReqest = StatusReqest.failure;
+          emit(SignUpFailernodata());
         }
       } else {
         autovalidateMode = AutovalidateMode.always;
       }
     } on ServerException catch (e) {
-      statusReqest = StatusReqest.failure;
-
-      emit(failer(ss: e.errorModel.errorMessage));
+      statusReqest = StatusReqest.serverfailure;
+      emit(SignUpfailer());
     }
   }
 
 //////////////////////////////////////////////
   LoginData loginData =
       LoginData(getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
-  gggg() async {
+  Login_Data() async {
     try {
       if (formstate.currentState!.validate()) {
         emit(Loginloading());
@@ -109,6 +110,27 @@ class AuthCubit extends Cubit<AuthState> {
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
       emit(LoginFailer());
+    }
+  }
+
+  VerfyCode verfyCode =
+      VerfyCode(getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
+
+  VerfiCode(String verfycode) async {
+    try {
+      emit(LoadingVerfycode());
+      statusReqest = StatusReqest.laoding;
+      var response = await verfyCode.verfyCode(verfycode, emailSignUp.text);
+      statusReqest = handingdata(response);
+      if (response['status'] == "success") {
+        emit(SuccessVerfycode());
+        dispose3();
+      } else {
+        emit(verfycodeFailernodata());
+      }
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+      emit((failerverfycode()));
     }
   }
 
