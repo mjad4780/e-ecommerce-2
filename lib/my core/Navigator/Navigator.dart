@@ -16,12 +16,12 @@ import 'package:untitled/view/screen/home/home.dart';
 import 'package:untitled/view/screen/test.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(path: "/", builder: (context, state) => const Login()
-      // const Language()
-      // getIt<CacheHelper>().getData(key: 'onbourding') == true
-      //     ? const Language()
-      //     : const Onboading(),
-      ),
+  GoRoute(
+      path: "/",
+      builder: (context, state) =>
+          getIt<CacheHelper>().getData(key: 'email') != null
+              ? const Home_page()
+              : vvv()),
   GoRoute(
     path: "/Login",
     builder: (context, state) => const Login(),
@@ -74,4 +74,12 @@ void push(context, String path) {
 
 void pushpushReplacement(context, String path) {
   GoRouter.of(context).pushReplacement(path);
+}
+
+vvv() {
+  if (getIt<CacheHelper>().getData(key: 'onbourding') == true) {
+    return const Login();
+  } else {
+    return const Language();
+  }
 }

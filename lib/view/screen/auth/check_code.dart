@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,10 +66,31 @@ class Check_Code extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      '29'.tr(context),
+                      '  ${'29'.tr(context)}${cubit.email.text}',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          height: 2, color: ColorManager.grey, fontSize: 16),
+                      style: const TextStyle(
+                          height: 2, color: ColorManager.black, fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text('Resend the verfication code'),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              cubit.SendVerfiCode();
+                            },
+                            child: Text(
+                              'press here',
+                              style: TextStyle(color: ColorManager.blue),
+                            ))
+                      ],
                     ),
                   ),
                   OtpTextField(
@@ -83,7 +105,9 @@ class Check_Code extends StatelessWidget {
                     //runs when every textfield is filled
                     onSubmit: (String verificationCode) {
                       // cubit.ver(verificationCode);
-                      cubit.VerfiCode(verificationCode);
+                      cubit.VerfiCode(
+                        verificationCode,
+                      );
                     }, // end onSubmit
                   ),
                 ],

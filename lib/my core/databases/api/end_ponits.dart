@@ -7,6 +7,8 @@ class EndPoint {
   static String Sugin_up = "$baseUrl/auth/sign_up.php";
   static String linklogin = "$baseUrl/auth/login.php";
   static String verfycode = "$baseUrl/auth/verfycode.php";
+  static String sendverfycode = "$baseUrl/auth/sendverfycode.php";
+
 /////
 ///////forget_password
   static String check_email = "$baseUrl/forget_password/check_email.php";

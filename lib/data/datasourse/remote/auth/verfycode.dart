@@ -28,4 +28,19 @@ class VerfyCode {
     //   statusReqest = StatusReqest.offlinefailure;
     // }
   }
+
+  sendverfyCode(
+    String email,
+  ) async {
+    // if (await networkInfo.isConnected!) {
+    var response = await Api.post(EndPoint.sendverfycode,
+        data: {
+          'email': email,
+        },
+        isFromData: true);
+    return response;
+    // } else {
+    //   statusReqest = StatusReqest.offlinefailure;
+    // }
+  }
 }

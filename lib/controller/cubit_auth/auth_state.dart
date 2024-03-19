@@ -37,3 +37,14 @@ final class LoginFailer extends AuthState {}
 final class LoginFailernodata extends AuthState {}
 
 final class LoginFailerExpition extends AuthState {}
+
+final class Loginerrorverfy extends AuthState {}
+
+/////////////////sendverfycode///////////////
+final class Sendloading extends AuthState {}
+
+final class SendSuccess extends AuthState {}
+
+final class SendFailer extends AuthState {}
+
+final class SendFailerNodata extends AuthState {}

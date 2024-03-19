@@ -8,6 +8,7 @@ import 'package:untitled/data/datasourse/remote/auth/verfycode.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
+import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/errors/expentions.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 
@@ -77,7 +78,7 @@ class AuthCubit extends Cubit<AuthState> {
         if (response['status'] == "success") {
           emit(SignupSuccess());
         } else {
-          // statusReqest = StatusReqest.failure;
+          statusReqest = StatusReqest.failure;
           emit(SignUpFailernodata());
         }
       } else {
@@ -97,13 +98,31 @@ class AuthCubit extends Cubit<AuthState> {
       if (formstate.currentState!.validate()) {
         emit(Loginloading());
         statusReqest = StatusReqest.laoding;
+        //  if (await networkInfo.isConnected!) {
         var response = await loginData.Login_logic1(email.text, Password.text);
         statusReqest = handingdata(response);
+
         if (response['status'] == "success") {
-          emit(LoginSuccess());
+          print(response['data']['user_improve']);
+          if (response['data']['user_improve'] != 1) {
+            emit(Loginerrorverfy());
+          } else {
+            emit(LoginSuccess());
+            getIt<CacheHelper>()
+                .saveData(key: 'email', value: response['data']['user_email']);
+            getIt<CacheHelper>().saveData(
+                key: 'username', value: response['data']['user_name']);
+            getIt<CacheHelper>()
+                .saveData(key: 'password', value: response['data']['password']);
+          }
         } else {
           emit(LoginFailernodata());
         }
+        // } else {
+        //   emit(LoginFailernodata());
+
+        //   statusReqest = StatusReqest.offlinefailure;
+        // }
       } else {
         autovalidateMode = AutovalidateMode.always;
       }
@@ -116,11 +135,14 @@ class AuthCubit extends Cubit<AuthState> {
   VerfyCode verfyCode =
       VerfyCode(getIt<NetworkInfoImpl>(), Api: getIt<DioConsumer>());
 
-  VerfiCode(String verfycode) async {
+  VerfiCode(
+    String verfycode,
+  ) async {
     try {
       emit(LoadingVerfycode());
       statusReqest = StatusReqest.laoding;
-      var response = await verfyCode.verfyCode(verfycode, emailSignUp.text);
+      var response = await verfyCode.verfyCode(
+          verfycode, email.text.isEmpty ? emailSignUp.text : email.text);
       statusReqest = handingdata(response);
       if (response['status'] == "success") {
         emit(SuccessVerfycode());
@@ -132,6 +154,11 @@ class AuthCubit extends Cubit<AuthState> {
       statusReqest = StatusReqest.serverfailure;
       emit((failerverfycode()));
     }
+  }
+
+  SendVerfiCode() async {
+    var response = await verfyCode
+        .sendverfyCode(email.text.isEmpty ? emailSignUp.text : email.text);
   }
 
   dispose3() {

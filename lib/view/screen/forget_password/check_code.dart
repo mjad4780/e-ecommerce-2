@@ -49,7 +49,7 @@ class Check_code_forget extends StatelessWidget {
                     ),
                     const Center(
                         child: Text(
-                      'CHECK CODE',
+                      'CHECK CODE ',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,

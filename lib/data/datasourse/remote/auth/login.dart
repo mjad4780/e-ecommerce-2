@@ -13,7 +13,6 @@ class LoginData {
   LoginData(this.networkInfo, {required this.Api});
 
   Login_logic1(String email, String password) async {
-    // if (await networkInfo.isConnected!) {
     var response = await Api.post(EndPoint.linklogin,
         data: {
           'email': email,
@@ -21,8 +20,5 @@ class LoginData {
         },
         isFromData: true);
     return response;
-    // } else {
-    //   statusReqest = StatusReqest.offlinefailure;
-    // }
   }
 }

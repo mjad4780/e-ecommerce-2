@@ -26,6 +26,9 @@ class Login extends StatelessWidget {
         ),
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
+            if (state is Loginerrorverfy) {
+              push(context, "/Check_Code");
+            }
             if (state is LoginSuccess) {
               push(context, '/Home_page');
             }
