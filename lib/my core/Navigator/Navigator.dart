@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
-import 'package:untitled/main.dart';
 import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
@@ -11,17 +10,18 @@ import 'package:untitled/view/screen/forget_password/check_code.dart';
 import 'package:untitled/view/screen/forget_password/CheckEmail.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
 import 'package:untitled/view/screen/forget_password/resetpassword.dart';
-import 'package:untitled/view/screen/forget_password/success_page.dart';
+import 'package:untitled/view/screen/home/Home_page.dart';
+import 'package:untitled/view/screen/home/favorite.dart';
 import 'package:untitled/view/screen/home/home.dart';
-import 'package:untitled/view/screen/test.dart';
+import 'package:untitled/view/screen/home/profile.dart';
+import 'package:untitled/view/screen/home/setting.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(
-      path: "/",
-      builder: (context, state) =>
-          getIt<CacheHelper>().getData(key: 'email') != null
-              ? const Home_page()
-              : vvv()),
+  GoRoute(path: "/", builder: (context, state) => const Home_page()
+      // getIt<CacheHelper>().getData(key: 'email') != null
+      //     ? const Home()
+      //     : vvv()
+      ),
   GoRoute(
     path: "/Login",
     builder: (context, state) => const Login(),
@@ -63,8 +63,20 @@ final GoRouter router = GoRouter(routes: [
     builder: (context, state) => const Check_code_forget(),
   ),
   GoRoute(
-    path: "/Home_page",
-    builder: (context, state) => const Home_page(),
+    path: "/Home",
+    builder: (context, state) => const Home(),
+  ),
+  GoRoute(
+    path: "/Favorite",
+    builder: (context, state) => const Favorite(),
+  ),
+  GoRoute(
+    path: "/Setting",
+    builder: (context, state) => const Setting(),
+  ),
+  GoRoute(
+    path: "/Profile",
+    builder: (context, state) => const Profile(),
   ),
 ]);
 

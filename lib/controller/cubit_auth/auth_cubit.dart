@@ -1,3 +1,7 @@
+// ignore_for_file: unused_local_variable
+
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
@@ -5,9 +9,12 @@ import 'package:untitled/core/function/handingdata.dart';
 import 'package:untitled/data/datasourse/remote/auth/login.dart';
 import 'package:untitled/data/datasourse/remote/auth/sign_up.dart';
 import 'package:untitled/data/datasourse/remote/auth/verfycode.dart';
+import 'package:untitled/data/datasourse/remote/test_data.dart';
+import 'package:untitled/data/model/categoriesmodel.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
+import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/errors/expentions.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';

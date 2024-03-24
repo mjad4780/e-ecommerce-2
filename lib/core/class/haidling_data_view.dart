@@ -15,9 +15,7 @@ class HandlingDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<AuthCubit>(context);
-    // BlocConsumer<AuthCubit, AuthState>(
-    //   listener: (context, state) {},
-    //   builder: (context, state) {
+
     return cubit.statusReqest == StatusReqest.laoding
         ? Center(child: Lottie.asset(Assets.loading, width: 250, height: 250))
         : cubit.statusReqest == StatusReqest.offlinefailure
@@ -31,7 +29,5 @@ class HandlingDataView extends StatelessWidget {
                         child: Lottie.asset(Assets.noData,
                             width: 250, height: 250))
                     : widget;
-    //   },
-    // );
   }
 }

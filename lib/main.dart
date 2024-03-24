@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => HomePageCubit(
+              Api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>()),
+        ),
+        BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
         BlocProvider(
@@ -45,44 +50,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class name extends StatelessWidget {
-  const name({super.key});
+// class name extends StatelessWidget {
+//   const name({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-          height: 100,
-          width: double.infinity,
-          child: Center(
-              child: GestureDetector(
-                  onTap: () {
-                    getIt<CacheHelper>().clearData();
-                  },
-                  child: const Icon(Icons.delete)))),
-    );
-  }
-}
-
-    // OtpTextField(
-    //     numberOfFields: 5,
-    //     borderColor: Color(0xFF512DA8),
-    //     //set to true to show as box or false to show as dash
-    //     showFieldAsBox: true, 
-    //     //runs when a code is typed in
-    //     onCodeChanged: (String code) {
-    //         //handle validation or checks here           
-    //     },
-    //     //runs when every textfield is filled
-    //     onSubmit: (String verificationCode){
-    //         showDialog(
-    //             context: context,
-    //             builder: (context){
-    //             return AlertDialog(
-    //                 title: Text("Verification Code"),
-    //                 content: Text('Code entered is $verificationCode'),
-    //             );
-    //             }
-    //         );
-    //     }, // end onSubmit
-    // ),
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SizedBox(
+//           height: 100,
+//           width: double.infinity,
+//           child: Center(
+//               child: GestureDetector(
+//                   onTap: () {
+//                     getIt<CacheHelper>().clearData();
+//                   },
+//                   child: const Icon(Icons.delete)))),
+//     );
+//   }
+// }

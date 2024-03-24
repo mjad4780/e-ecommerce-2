@@ -19,6 +19,13 @@ class EndPoint {
   ///test
   ///  static String baseUrl2 = "http://10.0.2.2/e-ecommerse/test.php";
   ///   static String ver = "http://10.0.2.2/e-ecommerse/auth/verfycode.php";
+  ///
+  /// ////////home////////////////////
+
+  static String home = "$baseUrl/home.php";
+/////////////////image///////////////
+  static String mobile = '$baseUrl/upload/categories';
+  static String image = 'http://localhost/e-ecommerse/upload';
 }
 
 class ApiKey {

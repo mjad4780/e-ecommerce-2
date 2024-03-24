@@ -23,6 +23,7 @@ class DioConsumer extends ApiConsumer {
       error: true,
     ));
   }
+
   @override
   Future delete(
     String path, {
@@ -43,21 +44,22 @@ class DioConsumer extends ApiConsumer {
     }
   }
 
-  @override
-  Future get(String path,
-      {Object? data, Map<String, dynamic>? queryParameters}) async {
-    try {
-      final response = await dio.get(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-      );
-
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
-  }
+  // @override
+  // Future get(String path,
+  //     {Object? data, Map<String, dynamic>? queryParameters}) async {
+  //   try {
+  //     final response = await dio.get(
+  //       path,
+  //       data: isFromData ? FormData.fromMap(data) : data,,
+  //       queryParameters: queryParameters,
+  //     );
+  //     // var vvvv = jsonDecode(response.data);
+  //     // return vvvv;
+  //     return response.data;
+  //   } on DioException catch (e) {
+  //     handleDioException(e);
+  //   }
+  // }
 
   @override
   Future patch(
@@ -72,8 +74,9 @@ class DioConsumer extends ApiConsumer {
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-
-      return response.data;
+      var vvvv = jsonDecode(response.data);
+      return vvvv;
+      // return response.data;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -86,6 +89,24 @@ class DioConsumer extends ApiConsumer {
       bool isFromData = false}) async {
     try {
       final response = await dio.post(
+        path,
+        data: isFromData ? FormData.fromMap(data) : data,
+        queryParameters: queryParameters,
+      );
+      var vvvv = jsonDecode(response.data);
+      return vvvv;
+    } on DioException catch (e) {
+      handleDioException(e);
+    }
+  }
+
+  @override
+  Future get(String path,
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      bool isFromData = false}) async {
+    try {
+      final response = await dio.get(
         path,
         data: isFromData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
