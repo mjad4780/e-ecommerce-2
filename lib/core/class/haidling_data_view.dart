@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
-import 'package:untitled/controller/cubit_test/test_cubit.dart';
+
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/data/datasourse/static/assets.dart';
 
@@ -14,17 +12,17 @@ class HandlingDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<AuthCubit>(context);
+    // final cubit = BlocProvider.of<AuthCubit>(context);
 
-    return cubit.statusReqest == StatusReqest.laoding
+    return statusReqest1 == StatusReqest.laoding
         ? Center(child: Lottie.asset(Assets.loading, width: 250, height: 250))
-        : cubit.statusReqest == StatusReqest.offlinefailure
+        : statusReqest1 == StatusReqest.offlinefailure
             ? Center(
                 child: Lottie.asset(Assets.offline, width: 250, height: 250))
-            : cubit.statusReqest == StatusReqest.serverfailure
+            : statusReqest1 == StatusReqest.serverfailure
                 ? Center(
                     child: Lottie.asset(Assets.server, width: 250, height: 250))
-                : cubit.statusReqest == StatusReqest.failure
+                : statusReqest1 == StatusReqest.failure
                     ? Center(
                         child: Lottie.asset(Assets.noData,
                             width: 250, height: 250))
