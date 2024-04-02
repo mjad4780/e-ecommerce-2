@@ -116,6 +116,8 @@ class AuthCubit extends Cubit<AuthState> {
           } else {
             emit(LoginSuccess());
             getIt<CacheHelper>()
+                .saveData(key: 'id', value: response['data']['user_id']);
+            getIt<CacheHelper>()
                 .saveData(key: 'email', value: response['data']['user_email']);
             getIt<CacheHelper>().saveData(
                 key: 'username', value: response['data']['user_name']);

@@ -1,31 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
-import 'package:untitled/core/class/haidling_data_view.dart';
 import 'package:untitled/core/constans/Color.dart';
-import 'package:untitled/data/model/Item.dart';
-import 'package:untitled/my%20core/Navigator/Navigator.dart';
+import 'package:untitled/data/model/favorite.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
-import 'package:untitled/view/screen/home/product_details.dart';
-import 'package:untitled/view/widget/favorite/like.dart';
-import 'package:untitled/view/widget/home/CostemProductHome.dart';
 
-class CustomListItems extends StatelessWidget {
-  const CustomListItems({
-    super.key,
-    required this.itemsModel,
-    required this.cubit,
-  });
-  final ItemsModel itemsModel;
-  final HomePageCubit cubit;
+class CustomListFavoriteItems extends StatelessWidget {
+  final MyFavoriteModel itemsModel;
+  // final bool active;
+  const CustomListFavoriteItems({super.key, required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<HomePageCubit>(context);
+
     return InkWell(
         onTap: () {
-          Navigaton(context, ProductDetails(itemsModel: itemsModel));
+          // controller.goToPageProductDetails(itemsModel);
         },
         child: Card(
           child: Padding(
@@ -34,28 +26,28 @@ class CustomListItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // tag: "{itemsModel.itemsId}",
-                  Image.network(
-                    "${EndPoint.image_item}/${itemsModel.itemsImage!}",
-                    height: 90,
-                    width: 120,
-                    fit: BoxFit.fill,
-                  ),
-                  //  CachedNetworkImage(
-                  //  // imageUrl: AppLink.imagestItems + "/" + itemsModel.itemsImage!,
+                  // Image.network(
+                  //   "${EndPoint.image_item}/${itemsModel.itemsImage}",
                   //   height: 100,
                   //   fit: BoxFit.fill,
                   // ),
-
-                  const SizedBox(height: 10),
-                  Container(
-                    child: Text('${itemsModel.itemsName}',
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            color: AppColor.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold)),
+                  Hero(
+                    tag: "${itemsModel.itemsId}",
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "${EndPoint.image_item}/${itemsModel.itemsImage!}",
+                      height: 100,
+                      fit: BoxFit.fill,
+                    ),
                   ),
+                  const SizedBox(height: 10),
+                  Text("${itemsModel.itemsName}",
+                      // translateDatabase(
+                      //     itemsModel.itemsNameAr, itemsModel.itemsName),
+                      style: const TextStyle(
+                          color: AppColor.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -79,15 +71,23 @@ class CustomListItems extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${itemsModel.itemsPrice}\$",
+                      Text("${itemsModel.itemsPrice} \$",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontFamily: "sans")),
-                      Likke(
-                        itemsModel: itemsModel,
-                      )
+                      IconButton(
+                          onPressed: () {
+                            cubit.remove(itemsModel.itemsId.toString());
+
+                            cubit.RemoveFavorite(itemsModel.itemsId!);
+                            print(cubit.ee);
+                          },
+                          icon: const Icon(
+                            Icons.delete_outline_outlined,
+                            color: AppColor.primaryColor,
+                          ))
                     ],
                   )
                 ]),

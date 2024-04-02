@@ -21,11 +21,13 @@ import 'package:untitled/view/screen/home/profile.dart';
 import 'package:untitled/view/screen/home/setting.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(path: "/", builder: (context, state) => const Home_page()
-      // getIt<CacheHelper>().getData(key: 'email') != null
-      //     ? const Home()
-      //     : vvv()
-      ),
+  GoRoute(
+      path: "/",
+      builder: (context, state) =>
+          getIt<CacheHelper>().getData(key: 'email') != null
+              ? const Home_page()
+              : vvv()),
+
   GoRoute(
     path: "/Login",
     builder: (context, state) => const Login(),
@@ -67,8 +69,8 @@ final GoRouter router = GoRouter(routes: [
     builder: (context, state) => const Check_code_forget(),
   ),
   GoRoute(
-    path: "/Home",
-    builder: (context, state) => const Home(),
+    path: "/Home_page",
+    builder: (context, state) => const Home_page(),
   ),
   GoRoute(
     path: "/Favorite",

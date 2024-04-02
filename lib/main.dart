@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/controller/cubit/local_cubit.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
-import 'package:untitled/core/class/StatusReqest.dart';
-import 'package:untitled/core/class/haidling_data_view.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
@@ -17,6 +16,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServise();
   await getIt<CacheHelper>().init();
+  // HomePageCubit home = HomePageCubit(
+  //     Api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>());
+  // await home.api();
+
   runApp(const MyApp());
 }
 
@@ -28,10 +31,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomePageCubit(
-              Api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>())
-            ..getDate(),
-        ),
+            create: (context) => HomePageCubit(
+                Api: getIt<DioConsumer>(),
+                networkInfo: getIt<NetworkInfoImpl>())
+              ..api()
+              ..getDate()
+              ..readData()),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
@@ -42,7 +47,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => ForgetPasswordCubit(
                 Api: getIt<DioConsumer>(),
-                networkInfo: getIt<NetworkInfoImpl>()))
+                networkInfo: getIt<NetworkInfoImpl>())),
+        BlocProvider(create: (context) => LocalCubit())
       ],
       child: const MaterialApp2(),
     );
@@ -51,30 +57,20 @@ class MyApp extends StatelessWidget {
 
 class name extends StatelessWidget {
   const name({super.key});
+  cxz() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<HomePageCubit, HomePageState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          final cubit = BlocProvider.of<HomePageCubit>(context);
-
-          return HandlingDataView(
-            widget: SizedBox(
-                height: 100,
-                width: double.infinity,
-                child: Center(
-                    child: GestureDetector(
-                        onTap: () {
-                          cubit.getDate();
-                          // getIt<CacheHelper>().clearData();
-                        },
-                        child: const Icon(Icons.delete)))),
-            statusReqest1: cubit.statusReqest!,
-          );
-        },
-      ),
+      body: SizedBox(
+          height: 100,
+          width: double.infinity,
+          child: Center(
+              child: GestureDetector(
+                  onTap: () {
+                    getIt<CacheHelper>().clearData();
+                  },
+                  child: const Icon(Icons.delete)))),
     );
   }
 }

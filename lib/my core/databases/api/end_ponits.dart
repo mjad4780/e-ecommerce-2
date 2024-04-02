@@ -20,6 +20,11 @@ class EndPoint {
   static String categories = "$baseUrl/items/categories_item.php";
   static String home = "$baseUrl/home.php";
 
+//////////////favorite//////////////
+  static String removefavorite = "$baseUrl/favorite/removefavorite.php";
+  static String addfavorite = "$baseUrl/favorite/addfavorite.php";
+  static String getfavorite = "$baseUrl/favorite/get_favorite.php";
+
 /////////////////image///////////////
   static String image_cat = '$baseUrl/upload/categories';
   static String image_item = '$baseUrl/upload/item';

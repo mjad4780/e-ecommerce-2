@@ -8,6 +8,7 @@ import 'package:untitled/main.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/resources/color_manager.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
+import 'package:untitled/view/screen/home/home.dart';
 import 'package:untitled/view/widget/Auth/custombuttonauth.dart';
 
 class Success_page extends StatelessWidget {
@@ -36,9 +37,9 @@ class Success_page extends StatelessWidget {
                   haigh: 11,
                   text: 'Okay',
                   onPressed: () {
-                    cubit.dispose3();
+                    // cubit.dispose3();
                     router.go('/Login');
-
+                    // pushpushReplacement(context, '/Home');
                     // Navigator.of(context).push(
                     //   MaterialPageRoute(builder: (context) => const Login()),
                     // );

@@ -38,6 +38,7 @@ class Item_categories extends StatelessWidget {
                           itemBuilder: (BuildContext context, index) {
                             return CustomListItems(
                               itemsModel: cubit.categoriesItemData[index],
+                              cubit: cubit,
                             );
                           },
                         ))

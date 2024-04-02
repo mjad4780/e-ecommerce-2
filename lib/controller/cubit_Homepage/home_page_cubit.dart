@@ -1,10 +1,15 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:meta/meta.dart';
+import 'package:untitled/core/class/sqlliite.dart';
 import 'package:untitled/core/function/handingdata.dart';
+import 'package:untitled/data/datasourse/remote/favorite/favorite.dart';
 import 'package:untitled/data/datasourse/remote/home/categories.dart';
 import 'package:untitled/data/datasourse/remote/home/item_categories.dart';
 import 'package:untitled/data/model/Item.dart';
+import 'package:untitled/data/model/favorite.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
@@ -41,11 +46,12 @@ class HomePageCubit extends Cubit<HomePageState> {
       var response = await home.home_page_data();
       statusReqest = handingdata(response);
       if (response['status'] == 'success') {
+        print(ee);
         for (var item in response['categories']) {
           dataCategories.add(CategoriesModel.fromJson(json: item));
           emit((Successhome()));
         }
-        for (var item in response['itemview']) {
+        for (var item in response['item1view']) {
           dataItem.add(ItemsModel.fromJson(item));
           emit((Successhome()));
         }
@@ -62,7 +68,6 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   CategoriesItem categoriesItem = CategoriesItem(Api: getIt<DioConsumer>());
   List<ItemsModel> categoriesItemData = [];
-  int i = 0;
 
   CategoriesItemGetDate(
     int id,
@@ -76,9 +81,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
       if (response['status'] == 'success') {
         for (var item in response['data']) {
-          // dataCategories.add(CategoriesModel.fromJson(json: item));
           categoriesItemData.add(ItemsModel.fromJson(item));
-          // print(dataCategories);
 
           emit((SuccessitemCategories()));
         }
@@ -93,10 +96,113 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 
+  FavoriteData favorite = FavoriteData(Api: getIt<DioConsumer>());
+
+  AddFavorite(int id) async {
+    try {
+      var response = await favorite.addfavorite(id);
+      if (response['status'] == "success") {
+        emit(SuccessAdd());
+      } else {}
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+
+      emit(failerAdd());
+    }
+  }
+
+  RemoveFavorite(int id) async {
+    try {
+      var response = await favorite.removefavorite(id);
+      statusReqest = handingdata(response);
+      if (response['status'] == "success") {
+        await GetFavorite();
+        emit(SuccessRemove());
+      } else {}
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+
+      emit(failerRemove());
+    }
+  }
+
+  List<MyFavoriteModel> myfavorite = [];
+  Future GetFavorite() async {
+    try {
+      myfavorite.clear();
+      emit(Loadingfavoriteget());
+
+      statusReqest = StatusReqest.laoding;
+
+      var response = await favorite.getfavorite();
+      statusReqest = handingdata(response);
+
+      statusReqest = handingdata(response);
+      if (response['status'] == "success") {
+        for (var item in response['data']) {
+          myfavorite.add(MyFavoriteModel.fromJson(item));
+          emit(successFavoriteget());
+        }
+      } else {
+        statusReqest = StatusReqest.failure;
+
+        emit(NodataFavoriteget());
+      }
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+
+      emit(failerRemove());
+    }
+  }
+
+  List ggg = [];
+  Set<String> ee = {};
+
+  SqlDb sql1 = SqlDb();
+  insert(String Itemid) async {
+    emit(loadinglocallInitial());
+    var response = await sql1.insert('favorite', {'itemid': Itemid});
+    await readData();
+    emit(SaveLocalInitial());
+  }
+
+  Future readData() async {
+    List<Map> response = await sql1.read("favorite");
+    for (var i in response) {
+      ee.add(i['itemid']);
+    }
+    emit(ReadLocalInitial());
+  }
+
+  remove(String i) async {
+    emit(loadinglocallInitial());
+    var response = await sql1.Delete('favorite', 'itemid= $i');
+    if (response > 0) {
+      ee.removeWhere((element) => element == i);
+    }
+    emit(removelInitial());
+  }
+
+  api() {
+    for (var i in ee) {
+      AddFavorite(int.parse(i));
+      print(i);
+      print(ee);
+    }
+  }
+
+  // Map Maplike = {};
+  // Like(id, val) {
+  //   Maplike[id] = val;
+  // }
+  ////////////////////
+  int i = 0;
+
   very_i(int val) {
     i = val;
   }
 
+//////////////////////////////////
   int current = 0;
   List<Widget> botteon = [
     const Home(),
@@ -108,4 +214,6 @@ class HomePageCubit extends Cubit<HomePageState> {
     current = index;
     emit(NavigationBottm());
   }
+
+  ////////////////////////////////
 }

@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/core/class/haidling_data_view.dart';
 import 'package:untitled/core/locallization/applocal.dart';
+import 'package:untitled/main.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/resources/color_manager.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
+import 'package:untitled/view/screen/home/home.dart';
 import 'package:untitled/view/widget/Auth/custombuttonauth.dart';
 import 'package:untitled/view/widget/Auth/customtextbodyauth.dart';
 import 'package:untitled/view/widget/Auth/customtextformauth.dart';
@@ -30,7 +32,8 @@ class Login extends StatelessWidget {
               push(context, "/Check_Code");
             }
             if (state is LoginSuccess) {
-              push(context, '/Home_page');
+              pushpushReplacement(context, "/Home_page");
+              // Navigaton(context, const Home());
             }
             if (state is LoginFailernodata) {
               ScaffoldMessenger.of(context).showSnackBar(
