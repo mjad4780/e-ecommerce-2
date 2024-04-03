@@ -48,13 +48,13 @@ class HomePageCubit extends Cubit<HomePageState> {
       if (response['status'] == 'success') {
         for (var item in response['categories']) {
           dataCategories.add(CategoriesModel.fromJson(json: item));
-          emit((Successhome()));
+          emit((Successhome2()));
         }
         for (var item in response['item1view']) {
           dataItem.add(ItemsModel.fromJson(item));
           emit((Successhome()));
         }
-        await GetFavorite();
+        // await GetFavorite();
       } else {
         emit((NodataHome()));
 
@@ -90,7 +90,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
         statusReqest = StatusReqest.failure;
       }
-      await GetFavorite();
+      // await GetFavorite();
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
       emit((FaileritemCategories()));
@@ -102,6 +102,8 @@ class HomePageCubit extends Cubit<HomePageState> {
   AddFavorite(int id) async {
     try {
       var response = await favorite.addfavorite(id);
+      await GetFavorite();
+
       emit(SuccessAdd());
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;

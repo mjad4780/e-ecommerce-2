@@ -12,6 +12,8 @@ final class LoadingHome extends HomePageState {}
 
 final class Successhome extends HomePageState {}
 
+final class Successhome2 extends HomePageState {}
+
 final class NodataHome extends HomePageState {}
 
 final class FailerHome extends HomePageState {}
