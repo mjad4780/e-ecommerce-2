@@ -79,10 +79,9 @@ class CustomListFavoriteItems extends StatelessWidget {
                               fontFamily: "sans")),
                       IconButton(
                           onPressed: () {
-                            cubit.remove(itemsModel.itemsId.toString());
+                            // cubit.remove(itemsModel.itemsId.toString());
 
                             cubit.RemoveFavorite(itemsModel.itemsId!);
-                            print(cubit.ee);
                           },
                           icon: const Icon(
                             Icons.delete_outline_outlined,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/core/constans/Color.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
 
 import 'package:untitled/view/widget/home/costemappbarnavigationbottom.dart';
 
@@ -20,7 +21,9 @@ class Home_page extends StatelessWidget {
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
               backgroundColor: AppColor.primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                push(context, '/Cart');
+              },
               child: const Icon(
                 Icons.shopping_basket_outlined,
                 color: Colors.white,

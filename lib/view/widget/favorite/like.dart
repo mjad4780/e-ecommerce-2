@@ -7,6 +7,7 @@ import 'package:untitled/data/model/Item.dart';
 class Likke extends StatelessWidget {
   const Likke({super.key, required this.itemsModel});
   final ItemsModel itemsModel;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomePageCubit, HomePageState>(
@@ -16,7 +17,7 @@ class Likke extends StatelessWidget {
 
         return Container(
           child: IconButton(
-              icon: cubit.ee.contains(itemsModel.itemsId.toString())
+              icon: cubit.itemid.contains(itemsModel.itemsId)
                   ? const Icon(
                       Icons.favorite,
                       color: AppColor.primaryColor,
@@ -26,12 +27,14 @@ class Likke extends StatelessWidget {
                       color: AppColor.primaryColor,
                     ),
               onPressed: () {
-                if (cubit.ee.contains(itemsModel.itemsId.toString())) {
-                  cubit.remove(itemsModel.itemsId.toString());
+                if (cubit.itemid.contains(itemsModel.itemsId)) {
                   cubit.RemoveFavorite(itemsModel.itemsId!);
+                  cubit.itemid
+                      .removeWhere((element) => element == itemsModel.itemsId);
+                  cubit.GetFavorite();
                 } else {
-                  cubit.insert(itemsModel.itemsId.toString());
                   cubit.AddFavorite(itemsModel.itemsId!);
+                  cubit.GetFavorite();
                 }
               }),
         );

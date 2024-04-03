@@ -46,7 +46,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       var response = await home.home_page_data();
       statusReqest = handingdata(response);
       if (response['status'] == 'success') {
-        print(ee);
         for (var item in response['categories']) {
           dataCategories.add(CategoriesModel.fromJson(json: item));
           emit((Successhome()));
@@ -55,6 +54,7 @@ class HomePageCubit extends Cubit<HomePageState> {
           dataItem.add(ItemsModel.fromJson(item));
           emit((Successhome()));
         }
+        await GetFavorite();
       } else {
         emit((NodataHome()));
 
@@ -90,6 +90,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
         statusReqest = StatusReqest.failure;
       }
+      await GetFavorite();
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
       emit((FaileritemCategories()));
@@ -101,9 +102,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   AddFavorite(int id) async {
     try {
       var response = await favorite.addfavorite(id);
-      if (response['status'] == "success") {
-        emit(SuccessAdd());
-      } else {}
+      emit(SuccessAdd());
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
 
@@ -114,11 +113,8 @@ class HomePageCubit extends Cubit<HomePageState> {
   RemoveFavorite(int id) async {
     try {
       var response = await favorite.removefavorite(id);
-      statusReqest = handingdata(response);
-      if (response['status'] == "success") {
-        await GetFavorite();
-        emit(SuccessRemove());
-      } else {}
+      await GetFavorite();
+      emit(SuccessRemove());
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
 
@@ -127,22 +123,23 @@ class HomePageCubit extends Cubit<HomePageState> {
   }
 
   List<MyFavoriteModel> myfavorite = [];
-  Future GetFavorite() async {
+  Set<int> itemid = {};
+  GetFavorite() async {
     try {
       myfavorite.clear();
       emit(Loadingfavoriteget());
-
       statusReqest = StatusReqest.laoding;
-
       var response = await favorite.getfavorite();
       statusReqest = handingdata(response);
 
       statusReqest = handingdata(response);
       if (response['status'] == "success") {
         for (var item in response['data']) {
+          itemid.add(item['favorite_itemsid']);
           myfavorite.add(MyFavoriteModel.fromJson(item));
           emit(successFavoriteget());
         }
+        print(itemid);
       } else {
         statusReqest = StatusReqest.failure;
 
@@ -155,41 +152,41 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 
-  List ggg = [];
-  Set<String> ee = {};
+  // List ggg = [];
+  // Set<String> ee = {};
 
-  SqlDb sql1 = SqlDb();
-  insert(String Itemid) async {
-    emit(loadinglocallInitial());
-    var response = await sql1.insert('favorite', {'itemid': Itemid});
-    await readData();
-    emit(SaveLocalInitial());
-  }
+  // SqlDb sql1 = SqlDb();
+  // insert(String Itemid) async {
+  //   emit(loadinglocallInitial());
+  //   var response = await sql1.insert('favorite', {'itemid': Itemid});
+  //   await readData();
+  //   emit(SaveLocalInitial());
+  // }
 
-  Future readData() async {
-    List<Map> response = await sql1.read("favorite");
-    for (var i in response) {
-      ee.add(i['itemid']);
-    }
-    emit(ReadLocalInitial());
-  }
+  // Future readData() async {
+  //   List<Map> response = await sql1.read("favorite");
+  //   for (var i in response) {
+  //     ee.add(i['itemid']);
+  //   }
+  //   emit(ReadLocalInitial());
+  // }
 
-  remove(String i) async {
-    emit(loadinglocallInitial());
-    var response = await sql1.Delete('favorite', 'itemid= $i');
-    if (response > 0) {
-      ee.removeWhere((element) => element == i);
-    }
-    emit(removelInitial());
-  }
+  // remove(String i) async {
+  //   emit(loadinglocallInitial());
+  //   var response = await sql1.Delete('favorite', 'itemid= $i');
+  //   if (response > 0) {
+  //     ee.removeWhere((element) => element == i);
+  //   }
+  //   emit(removelInitial());
+  // }
 
-  api() {
-    for (var i in ee) {
-      AddFavorite(int.parse(i));
-      print(i);
-      print(ee);
-    }
-  }
+  // api() {
+  //   for (var i in ee) {
+  //     AddFavorite(int.parse(i));
+  //     print(i);
+  //     print(ee);
+  //   }
+  // }
 
   // Map Maplike = {};
   // Like(id, val) {

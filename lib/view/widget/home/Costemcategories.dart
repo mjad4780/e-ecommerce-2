@@ -28,9 +28,10 @@ class CostemCategories extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    cubit.i = index;
-                    cubit.readData();
+                    // cubit.GetFavorite();
 
+                    cubit.i = index;
+                    // cubit.readData();
                     Navigaton(context, const Item_categories());
                     cubit.CategoriesItemGetDate(
                         cubit.dataCategories[index].categoriesId!);

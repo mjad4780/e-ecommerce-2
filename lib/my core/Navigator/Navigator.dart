@@ -8,6 +8,7 @@ import 'package:untitled/view/screen/Onboadind.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
 import 'package:untitled/view/screen/auth/Signup.dart';
 import 'package:untitled/view/screen/auth/check_code.dart';
+import 'package:untitled/view/screen/cart/cart.dart';
 import 'package:untitled/view/screen/forget_password/check_code.dart';
 import 'package:untitled/view/screen/forget_password/CheckEmail.dart';
 import 'package:untitled/view/screen/auth/success_page.dart';
@@ -88,6 +89,10 @@ final GoRouter router = GoRouter(routes: [
   //   path: "/ProductDetails",
   //   builder: (context, state) => const ProductDetails(),
   // ),
+  GoRoute(
+    path: "/Cart",
+    builder: (context, state) => const Cart(),
+  ),
 ]);
 
 void push(context, String path) {

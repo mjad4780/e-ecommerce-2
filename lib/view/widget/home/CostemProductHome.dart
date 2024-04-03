@@ -22,7 +22,8 @@ class CostemProductHome extends StatelessWidget {
       create: (context) => HomePageCubit(
           Api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>())
         ..getDate()
-        ..readData(),
+        ..GetFavorite(),
+      // ..readData(),
       child: BlocConsumer<HomePageCubit, HomePageState>(
         listener: (context, state) {},
         builder: (context, state) {

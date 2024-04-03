@@ -50,9 +50,9 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        cubit1.readData();
         cubit1.very_i(i1);
         cubit1.CategoriesItemGetDate(categoriesModel.categoriesId!);
+        // cubit1.GetFavorite();
       },
       child: Column(
         children: [

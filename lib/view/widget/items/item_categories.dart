@@ -6,6 +6,7 @@ import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/core/class/haidling_data_view.dart';
 import 'package:untitled/core/constans/Color.dart';
 import 'package:untitled/data/model/Item.dart';
+import 'package:untitled/data/model/favorite.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/view/screen/home/product_details.dart';
@@ -20,7 +21,6 @@ class CustomListItems extends StatelessWidget {
   });
   final ItemsModel itemsModel;
   final HomePageCubit cubit;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
