@@ -17,4 +17,15 @@ class HomeData {
     //   statusReqest = StatusReqest.offlinefailure;
     // }
   }
+
+  searchdata(String search) async {
+    // if (await networkInfo.isConnected!) {
+    var response = await Api.post(EndPoint.search,
+        data: {'search': search}, isFromData: true);
+
+    return response;
+    // } else {
+    //   statusReqest = StatusReqest.offlinefailure;
+    // }
+  }
 }

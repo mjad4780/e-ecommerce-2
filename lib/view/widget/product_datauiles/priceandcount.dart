@@ -5,7 +5,7 @@ class PriceAndCountItems extends StatelessWidget {
   final void Function()? onAdd;
   final void Function()? onRemove;
   final String price;
-  final String count;
+  final int count;
   const PriceAndCountItems(
       {super.key,
       required this.onAdd,
@@ -28,7 +28,7 @@ class PriceAndCountItems extends StatelessWidget {
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.black)),
                 child: Text(
-                  count,
+                  count.toString(),
                   style: const TextStyle(fontSize: 20, height: 1.1),
                 )),
             IconButton(onPressed: onRemove, icon: const Icon(Icons.remove)),

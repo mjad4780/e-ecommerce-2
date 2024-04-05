@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SearchAndNotifications extends StatelessWidget {
-  const SearchAndNotifications({super.key});
+  const SearchAndNotifications(
+      {super.key,
+      required this.hint,
+      required this.controller,
+      required this.onChanged,
+      required this.onPressed});
+  final String hint;
+  final TextEditingController controller;
+  final Function(String)? onChanged;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +20,14 @@ class SearchAndNotifications extends StatelessWidget {
           children: [
             Expanded(
                 child: TextFormField(
+              onChanged: onChanged,
+              controller: controller,
               decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: "Find Product",
+                  prefixIcon: IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: onPressed,
+                  ),
+                  hintText: hint,
                   hintStyle: const TextStyle(fontSize: 18),
                   border: OutlineInputBorder(
                       borderSide: BorderSide.none,

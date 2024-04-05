@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/core/class/haidling_data_view.dart';
+import 'package:untitled/view/widget/items/CardSearch.dart';
 import 'package:untitled/view/widget/items/List_item_categories.dart';
 import 'package:untitled/view/widget/items/item_categories.dart';
 
@@ -22,26 +23,42 @@ class Item_categories extends StatelessWidget {
               return Container(
                   padding: const EdgeInsets.all(15),
                   child: ListView(children: [
-                    const SearchAndNotifications(),
+                    SearchAndNotifications(
+                      hint: ' search peoduct',
+                      controller: cubit.searchcontroller,
+                      onChanged: (val) {
+                        cubit.mysearch(val);
+                        print(val);
+                      },
+                      onPressed: () {
+                        print('object');
+
+                        cubit.playsearch();
+                      },
+                    ),
                     const SizedBox(height: 20),
                     const ListCategoriesItems(),
                     HandlingDataView(
                         statusReqest1: cubit.statusReqest!,
-                        widget: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: cubit.categoriesItemData.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 0.8), //Cardطول
-                          itemBuilder: (BuildContext context, index) {
-                            return CustomListItems(
-                              itemsModel: cubit.categoriesItemData[index],
-                              cubit: cubit,
-                            );
-                          },
-                        ))
+                        widget: !cubit.search
+                            ? GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: cubit.categoriesItemData.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 0.8), //Cardطول
+                                itemBuilder: (BuildContext context, index) {
+                                  return CustomListItems(
+                                    itemsModel: cubit.categoriesItemData[index],
+                                    cubit: cubit,
+                                  );
+                                },
+                              )
+                            : ListItemsSearch(
+                                listdatamodel: cubit.mysearchdata,
+                              )),
                   ]));
             }));
   }

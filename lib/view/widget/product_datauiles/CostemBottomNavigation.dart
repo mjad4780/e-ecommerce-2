@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/core/constans/Color.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
 
 class CostemNavigation extends StatelessWidget {
-  const CostemNavigation({super.key});
-
+  const CostemNavigation({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +15,9 @@ class CostemNavigation extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
             color: AppColor.secondColor,
-            onPressed: () {},
+            onPressed: () {
+              push(context, '/Cart');
+            },
             child: const Text(
               "Go To Cart",
               style:

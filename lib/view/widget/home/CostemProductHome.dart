@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
+import 'package:untitled/controller/cubit_cart/cart_cubit.dart';
 import 'package:untitled/core/constans/Color.dart';
-import 'package:untitled/data/model/Item.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
-import 'package:untitled/my%20core/connection/network_info.dart';
-import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
+
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/view/screen/home/product_details.dart';
 import 'package:untitled/view/widget/favorite/like.dart';
@@ -21,6 +20,7 @@ class CostemProductHome extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = BlocProvider.of<HomePageCubit>(context);
+        final cubit1 = BlocProvider.of<CartCubit>(context);
 
         return SizedBox(
           height: 200,
@@ -30,8 +30,6 @@ class CostemProductHome extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // cubit.api();
-                  // push(context, '/ProductDetails');
                   Navigaton(
                       context,
                       ProductDetails(

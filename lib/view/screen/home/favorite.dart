@@ -22,7 +22,7 @@ class Favorite extends StatelessWidget {
         color: Colors.white,
         child: ListView(
           children: [
-            const SearchAndNotifications(),
+            // const SearchAndNotifications(),
             BlocConsumer<HomePageCubit, HomePageState>(
               listener: (context, state) {
                 // TODO: implement listener

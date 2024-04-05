@@ -24,10 +24,17 @@ class EndPoint {
   static String removefavorite = "$baseUrl/favorite/removefavorite.php";
   static String addfavorite = "$baseUrl/favorite/addfavorite.php";
   static String getfavorite = "$baseUrl/favorite/get_favorite.php";
+///////////cart////////////////
+  static String getcurrent_cart = "$baseUrl/cart/get_count_cart.php";
+  static String add_cart = "$baseUrl/cart/add_cart.php";
+  static String delete_cart = "$baseUrl/cart/delete_cart.php";
+  static String getcart = "$baseUrl/cart/getcart.php";
 
 /////////////////image///////////////
   static String image_cat = '$baseUrl/upload/categories';
   static String image_item = '$baseUrl/upload/item';
+  //////////////////searchitem
+  static String search = '$baseUrl/items/search.php';
 }
 
 class ApiKey {

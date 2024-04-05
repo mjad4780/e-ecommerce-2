@@ -12,6 +12,7 @@ import 'package:untitled/view/widget/home/Costemcategories.dart';
 import 'package:untitled/view/widget/home/DusCount.dart';
 import 'package:untitled/view/widget/home/NameText.dart';
 import 'package:untitled/view/widget/home/SearchAndNotifications.dart';
+import 'package:untitled/view/widget/items/CardSearch.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -22,19 +23,39 @@ class Home extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           final cubit = BlocProvider.of<HomePageCubit>(context);
-          return HandlingDataView(
-            widget: Container(
-              padding: const EdgeInsets.all(8),
-              child: ListView(children: const [
-                SearchAndNotifications(),
-                DisCount(),
-                NameText(text: 'Categories'),
-                CostemCategories(),
-                NameText(text: 'Product for you'),
-                CostemProductHome()
-              ]),
-            ),
-            statusReqest1: cubit.statusReqest!,
+          return Container(
+            padding: const EdgeInsets.all(8),
+            child: ListView(children: [
+              SearchAndNotifications(
+                hint: ' search peoduct',
+                controller: cubit.searchcontroller,
+                onChanged: (val) {
+                  cubit.mysearch(val);
+                  print(val);
+                },
+                onPressed: () {
+                  print('object');
+
+                  cubit.playsearch();
+                },
+              ),
+              HandlingDataView(
+                  statusReqest1: cubit.statusReqest!,
+                  widget: !cubit.search
+                      ? const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            DisCount(),
+                            NameText(text: 'Categories'),
+                            CostemCategories(),
+                            NameText(text: 'Product for you'),
+                            CostemProductHome(),
+                          ],
+                        )
+                      : ListItemsSearch(
+                          listdatamodel: cubit.mysearchdata,
+                        ))
+            ]),
           );
         });
   }

@@ -62,3 +62,16 @@ final class successFavoriteget extends HomePageState {}
 final class NodataFavoriteget extends HomePageState {}
 
 final class failerFavoriteget extends HomePageState {}
+
+///////////////////////search
+final class searchitem extends HomePageState {}
+
+final class searchplay extends HomePageState {}
+
+final class searchplaynodata extends HomePageState {}
+
+final class searchplayloading extends HomePageState {}
+
+final class searchplaysuccess extends HomePageState {}
+
+final class searchplayfailer extends HomePageState {}

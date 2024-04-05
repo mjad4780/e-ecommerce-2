@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/controller/cubit/local_cubit.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
+import 'package:untitled/controller/cubit_cart/cart_cubit.dart';
 import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
@@ -35,8 +35,7 @@ class MyApp extends StatelessWidget {
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>())
               ..getDate()
-            // ..GetFavorite()
-            ),
+              ..GetFavorite()),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
@@ -48,7 +47,9 @@ class MyApp extends StatelessWidget {
             create: (context) => ForgetPasswordCubit(
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>())),
-        BlocProvider(create: (context) => LocalCubit())
+        BlocProvider(
+            create: (context) =>
+                CartCubit(networkInfo: getIt<NetworkInfoImpl>()))
       ],
       child: const MaterialApp2(),
     );
@@ -62,15 +63,19 @@ class name extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-          height: 100,
-          width: double.infinity,
-          child: Center(
-              child: GestureDetector(
-                  onTap: () {
-                    getIt<CacheHelper>().clearData();
-                  },
-                  child: const Icon(Icons.delete)))),
+      body: Column(
+        children: [
+          SizedBox(
+              height: 100,
+              width: double.infinity,
+              child: Center(
+                  child: GestureDetector(
+                      onTap: () {
+                        getIt<CacheHelper>().clearData();
+                      },
+                      child: const Icon(Icons.delete)))),
+        ],
+      ),
     );
   }
 }

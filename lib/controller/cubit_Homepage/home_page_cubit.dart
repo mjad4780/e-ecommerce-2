@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
@@ -46,11 +48,11 @@ class HomePageCubit extends Cubit<HomePageState> {
       var response = await home.home_page_data();
       statusReqest = handingdata(response);
       if (response['status'] == 'success') {
-        for (var item in response['categories']) {
+        for (var item in response['categories']['data']) {
           dataCategories.add(CategoriesModel.fromJson(json: item));
           emit((Successhome2()));
         }
-        for (var item in response['item1view']) {
+        for (var item in response['item1view']['data']) {
           dataItem.add(ItemsModel.fromJson(item));
           emit((Successhome()));
         }
@@ -102,7 +104,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   AddFavorite(int id) async {
     try {
       var response = await favorite.addfavorite(id);
-      await GetFavorite();
+      // await GetFavorite();
 
       emit(SuccessAdd());
     } on Exception catch (e) {
@@ -115,7 +117,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   RemoveFavorite(int id) async {
     try {
       var response = await favorite.removefavorite(id);
-      await GetFavorite();
+      // await GetFavorite();
       emit(SuccessRemove());
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
@@ -132,8 +134,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       emit(Loadingfavoriteget());
       statusReqest = StatusReqest.laoding;
       var response = await favorite.getfavorite();
-      statusReqest = handingdata(response);
-
       statusReqest = handingdata(response);
       if (response['status'] == "success") {
         for (var item in response['data']) {
@@ -214,5 +214,51 @@ class HomePageCubit extends Cubit<HomePageState> {
     emit(NavigationBottm());
   }
 
-  ////////////////////////////////
+  ////////////////////////////////search
+  TextEditingController searchcontroller = TextEditingController();
+  bool search = false;
+  List<ItemsModel> mysearchdata = [];
+  MySearch() async {
+    try {
+      mysearchdata.clear();
+      emit(searchplayloading());
+      statusReqest = StatusReqest.laoding;
+      var response = await home.searchdata(searchcontroller.text);
+      statusReqest = handingdata(response);
+      if (response['status'] == "success") {
+        for (var item in response['data']) {
+          mysearchdata.add(ItemsModel.fromJson(item));
+          print(mysearchdata);
+
+          emit(searchplaysuccess());
+        }
+        print('#################################');
+        print(mysearchdata);
+      } else {
+        statusReqest = StatusReqest.failure;
+
+        emit(searchplaynodata());
+      }
+    } on Exception catch (e) {
+      statusReqest = StatusReqest.serverfailure;
+
+      emit(searchplayfailer());
+    }
+  }
+
+  mysearch(String val) {
+    if (val == '') {
+      search = false;
+      statusReqest = StatusReqest.none;
+    }
+    emit(searchitem());
+  }
+
+  playsearch() {
+    search = true;
+    MySearch();
+    emit(searchplay());
+  }
 }
+
+class Bbb {}
