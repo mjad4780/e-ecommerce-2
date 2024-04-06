@@ -31,11 +31,8 @@ class Home extends StatelessWidget {
                 controller: cubit.searchcontroller,
                 onChanged: (val) {
                   cubit.mysearch(val);
-                  print(val);
                 },
                 onPressed: () {
-                  print('object');
-
                   cubit.playsearch();
                 },
               ),
@@ -47,9 +44,9 @@ class Home extends StatelessWidget {
                           children: [
                             DisCount(),
                             NameText(text: 'Categories'),
-                            CostemCategories(),
+                            SizedBox(height: 300, child: name2()),
                             NameText(text: 'Product for you'),
-                            CostemProductHome(),
+                            // CostemProductHome(),
                           ],
                         )
                       : ListItemsSearch(

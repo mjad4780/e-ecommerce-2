@@ -35,9 +35,10 @@ class HomePageCubit extends Cubit<HomePageState> {
   final ApiConsumer Api;
   StatusReqest? statusReqest = StatusReqest.none;
   final NetworkInfo networkInfo;
+  StatusReqest? statusReqest1 = StatusReqest.none;
 
   HomeData home = HomeData(Api: getIt<DioConsumer>());
-  List<CategoriesModel> dataCategories = [];
+  List<CategoriesModel> dataCategories233 = [];
   List<ItemsModel> dataItem = [];
 
   getDate() async {
@@ -46,23 +47,57 @@ class HomePageCubit extends Cubit<HomePageState> {
       statusReqest = StatusReqest.laoding;
 
       var response = await home.home_page_data();
-      statusReqest = handingdata(response);
-      if (response['status'] == 'success') {
-        for (var item in response['categories']['data']) {
-          dataCategories.add(CategoriesModel.fromJson(json: item));
-          emit((Successhome2()));
-        }
-        for (var item in response['item1view']['data']) {
-          dataItem.add(ItemsModel.fromJson(item));
-          emit((Successhome()));
-        }
-        // await GetFavorite();
-      } else {
-        emit((NodataHome()));
 
-        statusReqest = StatusReqest.offlinefailure;
-      }
+      statusReqest = handingdata(response);
+      //   if (response['status'] == 'success') {
+      // for (var item in response['categories']['data']) {
+      //   dataCategories.add(CategoriesModel.fromJson(json: item));
+      // }
+      // print('############################################');
+
+      // } else {
+      //   print('############################################');
+      // }
+
+      response.fold(
+          (l) => emit(
+                NodataHome(statusReqest: statusReqest = l),
+              )
+          // statusReqest = l;
+
+          // print('PPPPPPPPPPPPPPPPPPPPPPP${l.name}');
+          // emit((FailerHome()));
+
+          // if (l == StatusReqest.offlinefailure) {
+
+          //   print('objechjcjhft')
+
+          //
+          // } else {
+          //   print('object');
+          // }
+          , (r) {
+        dataCategories233.addAll(r);
+        emit((Successhome2(categories: r)));
+      });
+
+      // if (response['status'] == 'success') {
+      //   for (var item in response['categories']['data']) {
+      //     dataCategories.add(CategoriesModel.fromJson(json: item));
+      //     emit((Successhome2()));
+      //   }
+      //   for (var item in response['item1view']['data']) {
+      //     dataItem.add(ItemsModel.fromJson(item));
+      //     emit((Successhome()));
+      //   }
+      //   // await GetFavorite();
+      // } else {
+      //   emit((NodataHome()));
+
+      //   statusReqest = StatusReqest.offlinefailure;
+      // }
     } on Exception catch (e) {
+      print('oasufghsbgfdm xgbfdzh');
       statusReqest = StatusReqest.serverfailure;
       emit((FailerHome()));
     }

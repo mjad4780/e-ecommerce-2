@@ -35,7 +35,8 @@ class MyApp extends StatelessWidget {
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>())
               ..getDate()
-              ..GetFavorite()),
+            // ..GetFavorite()
+            ),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),

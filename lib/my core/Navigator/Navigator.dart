@@ -20,6 +20,7 @@ import 'package:untitled/view/screen/home/item_categories.dart';
 import 'package:untitled/view/screen/home/product_details.dart';
 import 'package:untitled/view/screen/home/profile.dart';
 import 'package:untitled/view/screen/home/setting.dart';
+import 'package:untitled/view/widget/home/Costemcategories.dart';
 
 final GoRouter router = GoRouter(routes: [
   GoRoute(

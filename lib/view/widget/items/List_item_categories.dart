@@ -19,14 +19,16 @@ class ListCategoriesItems extends StatelessWidget {
             height: 60,
             child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemCount: cubit.dataCategories.length,
+              itemCount: cubit.dataCategories233.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Categories(
-                  categoriesModel: cubit.dataCategories[index],
-                  cubit1: cubit,
-                  i1: index,
-                );
+                return null;
+
+                // return Categories(
+                //   categoriesModel: cubit.dataCategories233[index],
+                //   cubit1: cubit,
+                //   i1: index,
+                // );
               },
             ),
           );

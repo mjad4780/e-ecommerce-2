@@ -12,9 +12,17 @@ final class LoadingHome extends HomePageState {}
 
 final class Successhome extends HomePageState {}
 
-final class Successhome2 extends HomePageState {}
+final class Successhome2 extends HomePageState {
+  final List<CategoriesModel> categories;
 
-final class NodataHome extends HomePageState {}
+  Successhome2({required this.categories});
+}
+
+final class NodataHome extends HomePageState {
+  final StatusReqest statusReqest;
+
+  NodataHome({required this.statusReqest});
+}
 
 final class FailerHome extends HomePageState {}
 
