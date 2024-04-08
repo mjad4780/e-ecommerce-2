@@ -33,7 +33,6 @@ class Likke extends StatelessWidget {
                 } else {
                   cubit.AddFavorite(itemsModel.itemsId!);
                 }
-                cubit.GetFavorite();
               }),
         );
       },

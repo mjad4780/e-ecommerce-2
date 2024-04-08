@@ -44,9 +44,9 @@ class Home extends StatelessWidget {
                           children: [
                             DisCount(),
                             NameText(text: 'Categories'),
-                            SizedBox(height: 300, child: name2()),
+                            CostemCategories(),
                             NameText(text: 'Product for you'),
-                            // CostemProductHome(),
+                            CostemProductHome(),
                           ],
                         )
                       : ListItemsSearch(

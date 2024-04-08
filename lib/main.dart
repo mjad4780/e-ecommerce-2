@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:untitled/controller/cubit_Adress/adress_cubit.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/controller/cubit_cart/cart_cubit.dart';
@@ -7,6 +9,7 @@ import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
+import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 
@@ -14,11 +17,9 @@ import 'package:untitled/view/widget/Materialapp/Materialapp.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   setupServise();
   await getIt<CacheHelper>().init();
-  // HomePageCubit home = HomePageCubit(
-  //     Api: getIt<DioConsumer>(), networkInfo: getIt<NetworkInfoImpl>());
-  // await home.api();
 
   runApp(const MyApp());
 }
@@ -30,13 +31,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => AdressCubit(getIt<DioConsumer>())),
         BlocProvider(
             create: (context) => HomePageCubit(
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>())
-              ..getDate()
-            // ..GetFavorite()
-            ),
+              ..GetFavorite()
+              ..getDate()),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
                 networkInfo: getIt<NetworkInfoImpl>())),
         BlocProvider(
             create: (context) =>
-                CartCubit(networkInfo: getIt<NetworkInfoImpl>()))
+                CartCubit(networkInfo: getIt<NetworkInfoImpl>())),
       ],
       child: const MaterialApp2(),
     );

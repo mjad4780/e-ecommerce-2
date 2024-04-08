@@ -7,6 +7,7 @@ import 'package:dartz/dartz_unsafe.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/class/sqlliite.dart';
 import 'package:untitled/core/function/handingdata.dart';
+import 'package:untitled/data/datasourse/Local/localHive.dart';
 import 'package:untitled/data/datasourse/remote/favorite/favorite.dart';
 import 'package:untitled/data/datasourse/remote/home/categories.dart';
 import 'package:untitled/data/datasourse/remote/home/item_categories.dart';
@@ -37,7 +38,9 @@ class HomePageCubit extends Cubit<HomePageState> {
   final NetworkInfo networkInfo;
   StatusReqest? statusReqest1 = StatusReqest.none;
 
-  HomeData home = HomeData(Api: getIt<DioConsumer>());
+  HomeData home = HomeData(
+    Api: getIt<DioConsumer>(),
+  );
   List<CategoriesModel> dataCategories233 = [];
   List<ItemsModel> dataItem = [];
 
@@ -47,57 +50,23 @@ class HomePageCubit extends Cubit<HomePageState> {
       statusReqest = StatusReqest.laoding;
 
       var response = await home.home_page_data();
-
       statusReqest = handingdata(response);
-      //   if (response['status'] == 'success') {
-      // for (var item in response['categories']['data']) {
-      //   dataCategories.add(CategoriesModel.fromJson(json: item));
-      // }
-      // print('############################################');
+      if (response['status'] == 'success') {
+        for (var item in response['categories']['data']) {
+          dataCategories233.add(CategoriesModel.fromJson(json: item));
+          emit((Successhome2()));
+        }
+        for (var item in response['item1view']['data']) {
+          dataItem.add(ItemsModel.fromJson(item));
+          emit((Successhome()));
+        }
+        // await GetFavorite();
+      } else {
+        emit((NodataHome()));
 
-      // } else {
-      //   print('############################################');
-      // }
-
-      response.fold(
-          (l) => emit(
-                NodataHome(statusReqest: statusReqest = l),
-              )
-          // statusReqest = l;
-
-          // print('PPPPPPPPPPPPPPPPPPPPPPP${l.name}');
-          // emit((FailerHome()));
-
-          // if (l == StatusReqest.offlinefailure) {
-
-          //   print('objechjcjhft')
-
-          //
-          // } else {
-          //   print('object');
-          // }
-          , (r) {
-        dataCategories233.addAll(r);
-        emit((Successhome2(categories: r)));
-      });
-
-      // if (response['status'] == 'success') {
-      //   for (var item in response['categories']['data']) {
-      //     dataCategories.add(CategoriesModel.fromJson(json: item));
-      //     emit((Successhome2()));
-      //   }
-      //   for (var item in response['item1view']['data']) {
-      //     dataItem.add(ItemsModel.fromJson(item));
-      //     emit((Successhome()));
-      //   }
-      //   // await GetFavorite();
-      // } else {
-      //   emit((NodataHome()));
-
-      //   statusReqest = StatusReqest.offlinefailure;
-      // }
+        statusReqest = StatusReqest.offlinefailure;
+      }
     } on Exception catch (e) {
-      print('oasufghsbgfdm xgbfdzh');
       statusReqest = StatusReqest.serverfailure;
       emit((FailerHome()));
     }
@@ -123,10 +92,14 @@ class HomePageCubit extends Cubit<HomePageState> {
           emit((SuccessitemCategories()));
         }
       } else {
+        statusReqest = StatusReqest.none;
+
         emit((NodataitemCategories()));
 
         statusReqest = StatusReqest.failure;
       }
+      emit(mmmmmmmmmm());
+
       // await GetFavorite();
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
@@ -139,7 +112,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   AddFavorite(int id) async {
     try {
       var response = await favorite.addfavorite(id);
-      // await GetFavorite();
+      await GetFavorite();
 
       emit(SuccessAdd());
     } on Exception catch (e) {
@@ -152,7 +125,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   RemoveFavorite(int id) async {
     try {
       var response = await favorite.removefavorite(id);
-      // await GetFavorite();
+      await GetFavorite();
       emit(SuccessRemove());
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;
@@ -178,9 +151,10 @@ class HomePageCubit extends Cubit<HomePageState> {
         }
         print(itemid);
       } else {
-        statusReqest = StatusReqest.failure;
-
         emit(NodataFavoriteget());
+
+        statusReqest = StatusReqest.failure;
+        // statusReqest = StatusReqest.none;
       }
     } on Exception catch (e) {
       statusReqest = StatusReqest.serverfailure;

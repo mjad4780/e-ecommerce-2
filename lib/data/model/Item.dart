@@ -1,21 +1,37 @@
 class ItemsModel {
   int? itemsId;
+
   String? itemsName;
+
   String? itemsNameAr;
+
   String? itemsDesc;
+
   String? itemsDescAr;
+
   String? itemsImage;
+
   int? itemsCount;
+
   int? itemsActive;
+
   int? itemsPrice;
+
   int? itemsDiscount;
+
   int? itemsDate;
+
   int? itemsCat;
   int? categoriesId;
+
   String? categoriesName;
+
   String? categoriesNamaAr;
+
   String? categoriesImage;
+
   String? categoriesDatetime;
+
   int? favorite;
 
   ItemsModel(

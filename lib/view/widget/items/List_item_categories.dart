@@ -22,13 +22,11 @@ class ListCategoriesItems extends StatelessWidget {
               itemCount: cubit.dataCategories233.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return null;
-
-                // return Categories(
-                //   categoriesModel: cubit.dataCategories233[index],
-                //   cubit1: cubit,
-                //   i1: index,
-                // );
+                return Categories(
+                  categoriesModel: cubit.dataCategories233[index],
+                  cubit1: cubit,
+                  i1: index,
+                );
               },
             ),
           );

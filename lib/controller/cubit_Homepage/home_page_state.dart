@@ -12,16 +12,19 @@ final class LoadingHome extends HomePageState {}
 
 final class Successhome extends HomePageState {}
 
-final class Successhome2 extends HomePageState {
-  final List<CategoriesModel> categories;
+final class Successhome2 extends HomePageState {}
 
-  Successhome2({required this.categories});
-}
+final class NodataHome extends HomePageState {}
 
-final class NodataHome extends HomePageState {
+//////////////homeitem./////////
+final class LoadingHomeitem extends HomePageState {}
+
+final class Successhomeitem extends HomePageState {}
+
+final class NodataHomeitem extends HomePageState {
   final StatusReqest statusReqest;
 
-  NodataHome({required this.statusReqest});
+  NodataHomeitem({required this.statusReqest});
 }
 
 final class FailerHome extends HomePageState {}
@@ -83,3 +86,5 @@ final class searchplayloading extends HomePageState {}
 final class searchplaysuccess extends HomePageState {}
 
 final class searchplayfailer extends HomePageState {}
+
+final class mmmmmmmmmm extends HomePageState {}

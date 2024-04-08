@@ -35,8 +35,15 @@ class EndPoint {
   static String image_item = '$baseUrl/upload/item';
   //////////////////searchitem
   static String search = '$baseUrl/items/search.php';
+  ////////////////adress/////////////
+  static String adress_get = '$baseUrl/adress/get_adress.php';
+  static String adress_add = '$baseUrl/adress/add_adress.php';
+  static String adress_edit = '$baseUrl/adress/edit_adress.php';
+  static String adress_delete = '$baseUrl/adress/delete_adress.php';
 }
 
 class ApiKey {
   static String token = 'token';
+  static String itemlocal = 'itemlocal';
+  static String categorieslocal = 'categorieslocal';
 }

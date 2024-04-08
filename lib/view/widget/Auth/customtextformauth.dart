@@ -13,6 +13,7 @@ class CustomTextFormAuth extends StatelessWidget {
   final bool obscureText;
   final void Function()? onTapIcon;
   final Function(String?)? onSaved;
+  final Function(String)? onChanged;
   final Widget? child;
 
   const CustomTextFormAuth(
@@ -26,7 +27,8 @@ class CustomTextFormAuth extends StatelessWidget {
       required this.valid,
       required this.isNumber,
       this.obscureText = false,
-      this.child});
+      this.child,
+      this.onChanged});
 
   // bool _obscureText = true;
   @override
@@ -36,6 +38,7 @@ class CustomTextFormAuth extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        onChanged: onChanged,
         obscureText: obscureText && cubit.obscureText,
         onSaved: onSaved,
         keyboardType:

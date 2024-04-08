@@ -5,6 +5,8 @@ import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
+import 'package:untitled/view/screen/address/adddetails.dart';
+import 'package:untitled/view/screen/address/view.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
 import 'package:untitled/view/screen/auth/Signup.dart';
 import 'package:untitled/view/screen/auth/check_code.dart';
@@ -90,6 +92,14 @@ final GoRouter router = GoRouter(routes: [
   //   path: "/ProductDetails",
   //   builder: (context, state) => const ProductDetails(),
   // ),
+  GoRoute(
+    path: "/AddressView",
+    builder: (context, state) => const AddressView(),
+  ),
+  GoRoute(
+    path: "/AddressAddDetails",
+    builder: (context, state) => const AddressAddDetails(),
+  ),
   GoRoute(
     path: "/Cart",
     builder: (context, state) => const Cart(),
