@@ -25,7 +25,7 @@ class CustomListItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigaton(context, ProductDetails(itemsModel: itemsModel));
+          navigaton(context, ProductDetails(itemsModel: itemsModel));
         },
         child: Card(
           child: Padding(

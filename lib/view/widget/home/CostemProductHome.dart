@@ -30,7 +30,7 @@ class CostemProductHome extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  Navigaton(
+                  navigaton(
                       context,
                       ProductDetails(
                         itemsModel: cubit.dataItem[index],

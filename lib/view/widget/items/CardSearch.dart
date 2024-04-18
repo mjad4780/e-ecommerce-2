@@ -18,7 +18,7 @@ class ListItemsSearch extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Navigaton(
+              navigaton(
                   context, ProductDetails(itemsModel: listdatamodel[index]));
             },
             child: Container(

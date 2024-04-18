@@ -41,7 +41,7 @@ class AddressView extends StatelessWidget {
                     itemBuilder: (context, i) {
                       return CardAddress(
                         onedit: () {
-                          Navigaton(
+                          navigaton(
                               context,
                               EditressAddDetails(
                                 city: cubit.getadrees[i].addressCity!,

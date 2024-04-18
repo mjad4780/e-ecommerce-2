@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/function/handingdata.dart';
-import 'package:untitled/data/datasourse/remote/adress/add.dart';
+import 'package:untitled/data/datasourse/remote/adress/AdressData.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
@@ -22,7 +22,7 @@ class AdressCubit extends Cubit<AdressState> {
   TextEditingController streetadd = TextEditingController();
 
   StatusReqest? statusReqest = StatusReqest.none;
-  Adress adress = Adress(Api: getIt<DioConsumer>());
+  Adress adress = Adress(api: getIt<DioConsumer>());
   List<AddressModel> getadrees = [];
   double lat = 0876858;
   double long = 0557547;
@@ -45,7 +45,7 @@ class AdressCubit extends Cubit<AdressState> {
   adressaddd() async {
     emit(addAdressloding());
     statusReqest = StatusReqest.laoding;
-    var response = await adress.AddAdress(
+    var response = await adress.addAdress(
         nemeadd.text, cityadd.text, streetadd.text, lat, long);
     statusReqest = handingdata(response);
     response.fold(

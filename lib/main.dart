@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:untitled/controller/cubit_Adress/adress_cubit.dart';
 import 'package:untitled/controller/cubit_Homepage/home_page_cubit.dart';
 import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
@@ -9,7 +8,6 @@ import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
-import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 
@@ -17,10 +15,8 @@ import 'package:untitled/view/widget/Materialapp/Materialapp.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   setupServise();
   await getIt<CacheHelper>().init();
-
   runApp(const MyApp());
 }
 
@@ -58,26 +54,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class name extends StatelessWidget {
-  const name({super.key});
-  cxz() {}
+// class name extends StatelessWidget {
+//   const name({super.key});
+//   cxz() {}
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-              height: 100,
-              width: double.infinity,
-              child: Center(
-                  child: GestureDetector(
-                      onTap: () {
-                        getIt<CacheHelper>().clearData();
-                      },
-                      child: const Icon(Icons.delete)))),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           SizedBox(
+//               height: 100,
+//               width: double.infinity,
+//               child: Center(
+//                   child: GestureDetector(
+//                       onTap: () {
+//                         getIt<CacheHelper>().clearData();
+//                       },
+//                       child: const Icon(Icons.delete)))),
+//         ],
+//       ),
+//     );
+//   }
+// }

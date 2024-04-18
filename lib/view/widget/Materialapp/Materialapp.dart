@@ -46,7 +46,7 @@ class MaterialApp2 extends StatelessWidget {
     return ThemeData(
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: AppColor.primaryColor),
-        appBarTheme: const AppBarTheme(color: AppColor.primaryColor),
+        // appBarTheme: const AppBarTheme(color: AppColor.primaryColor),
         textTheme: const TextTheme(
             bodyLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)));
   }
