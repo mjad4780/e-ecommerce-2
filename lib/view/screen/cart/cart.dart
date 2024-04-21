@@ -25,9 +25,12 @@ class Cart extends StatelessWidget {
 
           return Scaffold(
             bottomNavigationBar: BottomNavgationBarCart(
-                price: '',
-                shipping: "",
-                totalprice: cubit.Totalprice.toString()),
+              price: '',
+              shipping: "",
+              totalprice: cubit.Totalprice.toString(),
+              discount: '',
+              controllercoupon: cubit.coupon,
+            ),
             body: HandlingDataView(
                 statusReqest1: cubit.statusReqest!,
                 widget: ListView(

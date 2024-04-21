@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/core/function/handingdata.dart';
@@ -14,6 +15,7 @@ part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit({required this.networkInfo}) : super(CartInitial());
+  TextEditingController coupon = TextEditingController();
   StatusReqest? statusReqest = StatusReqest.none;
   final NetworkInfo networkInfo;
   CartData cartData = CartData(Api: getIt<DioConsumer>());
