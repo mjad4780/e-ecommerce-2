@@ -16,6 +16,7 @@ class CartModel {
   int? itemsDiscount;
   String? itemsDate;
   int? itemsCat;
+  int? Itemprice_discount;
 
   CartModel(
       {this.itemsprice,
@@ -34,7 +35,8 @@ class CartModel {
       this.itemsPrice,
       this.itemsDiscount,
       this.itemsDate,
-      this.itemsCat});
+      this.itemsCat,
+      this.Itemprice_discount});
 
   CartModel.fromJson(Map<String, dynamic> json) {
     itemsprice = json['items_prices'];
@@ -54,6 +56,7 @@ class CartModel {
     itemsDiscount = json['item_discount'];
     itemsDate = json['item_date'];
     itemsCat = json['item_cat'];
+    Itemprice_discount = json['itemprice_discount'];
   }
 
   Map<String, dynamic> toJson() {

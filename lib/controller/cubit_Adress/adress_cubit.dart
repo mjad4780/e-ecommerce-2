@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
+
 import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/function/handingdata.dart';
 import 'package:untitled/data/datasourse/remote/adress/AdressData.dart';
 import 'package:untitled/my%20core/databases/api/api_consumer.dart';
-import 'package:untitled/my%20core/databases/api/end_ponits.dart';
-import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 
 import '../../core/class/StatusReqest.dart';
 import '../../data/model/addressmodel.dart';
@@ -24,8 +29,8 @@ class AdressCubit extends Cubit<AdressState> {
   StatusReqest? statusReqest = StatusReqest.none;
   Adress adress = Adress(api: getIt<DioConsumer>());
   List<AddressModel> getadrees = [];
-  double lat = 0876858;
-  double long = 0557547;
+  // double lat = 0876858;
+  // double long = 0557547;
 
   adressget() async {
     getadrees.clear();
@@ -46,7 +51,11 @@ class AdressCubit extends Cubit<AdressState> {
     emit(addAdressloding());
     statusReqest = StatusReqest.laoding;
     var response = await adress.addAdress(
-        nemeadd.text, cityadd.text, streetadd.text, lat, long);
+        nemeadd.text,
+        cityadd.text,
+        streetadd.text,
+        latLng!.latitude.toString(),
+        latLng!.longitude.toString());
     statusReqest = handingdata(response);
     response.fold(
         (l) => emit(
@@ -64,8 +73,8 @@ class AdressCubit extends Cubit<AdressState> {
   ) async {
     emit(editAdressloding());
     statusReqest = StatusReqest.laoding;
-    var response =
-        await adress.editAdress(nameedit, cityedit, streetedit, lat, long, id);
+    var response = await adress.editAdress(nameedit, cityedit, streetedit,
+        latLng!.latitude, latLng!.longitude, id);
     statusReqest = handingdata(response);
     response.fold(
         (l) => emit(
@@ -88,5 +97,25 @@ class AdressCubit extends Cubit<AdressState> {
             ), (r) {
       emit((deleteAdresssuccess()));
     });
+  }
+
+  MapController mapController = MapController();
+  List<Marker> markers = [];
+  LatLng? latLng;
+
+  addmarker(LatLng point) {
+    markers.clear();
+    markers.add(Marker(point: point, child: const Icon(Icons.pin_drop)));
+    emit(AddMarker());
+  }
+
+  getLating() async {
+    statusReqest = StatusReqest.laoding;
+    emit(LoidungLating());
+    Position position;
+    position = await Geolocator.getCurrentPosition();
+    latLng = LatLng(position.latitude, position.longitude);
+    statusReqest = StatusReqest.none;
+    emit(GetLating());
   }
 }

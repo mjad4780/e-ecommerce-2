@@ -4,8 +4,9 @@ class AddressModel {
   String? addressName;
   String? addressCity;
   String? addressStreet;
-  int? addressLat;
-  int? addressLong;
+  String? addressLat;
+  String? addressLong;
+  // double
 
   AddressModel(
       {this.addressId,

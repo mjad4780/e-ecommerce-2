@@ -26,7 +26,7 @@ class Cart extends StatelessWidget {
           return Scaffold(
             bottomNavigationBar: BottomNavgationBarCart(
                 price: '',
-                shipping: "300",
+                shipping: "",
                 totalprice: cubit.Totalprice.toString()),
             body: HandlingDataView(
                 statusReqest1: cubit.statusReqest!,
@@ -44,7 +44,8 @@ class Cart extends StatelessWidget {
                               cubit.mycart.length,
                               (i) => CustomItemsCartList(
                                     name: '${cubit.mycart[i].itemsName}',
-                                    price: '${cubit.mycart[i].itemsPrice}',
+                                    price:
+                                        '${cubit.mycart[i].Itemprice_discount}',
                                     count: '${cubit.mycart[i].countitems}',
                                     imagename: '${cubit.mycart[i].itemsImage}',
                                     onAdd: () async {

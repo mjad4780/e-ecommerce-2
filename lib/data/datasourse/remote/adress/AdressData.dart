@@ -20,7 +20,8 @@ class Adress {
         for (var item in response['data']) {
           ggg.add(AddressModel.fromJson(item));
         }
-        // List listdata = response['data'];
+        print('4fjsaygfbd${getIt<CacheHelper>().getData(key: 'id')}');
+        // List listdata = response['data'];;
         // ggg.addAll(listdata.map((e) => AddressModel.fromJson(e)));
 
         return Right(ggg);
@@ -36,8 +37,8 @@ class Adress {
     String name,
     String city,
     String street,
-    double lat,
-    double long,
+    String lat,
+    String long,
   ) async {
     try {
       var response =

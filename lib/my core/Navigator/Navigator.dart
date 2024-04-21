@@ -4,6 +4,7 @@ import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 import 'package:untitled/view/screen/Locallization.dart';
 import 'package:untitled/view/screen/Onboadind.dart';
+import 'package:untitled/view/screen/address/add.dart';
 import 'package:untitled/view/screen/address/adddetails.dart';
 import 'package:untitled/view/screen/address/view.dart';
 import 'package:untitled/view/screen/auth/Login.dart';
@@ -22,11 +23,12 @@ import 'package:untitled/view/screen/home/setting.dart';
 import 'package:untitled/view/screen/test.dart';
 
 final GoRouter router = GoRouter(routes: [
-  GoRoute(path: "/", builder: (context, state) => const Test()
-      // getIt<CacheHelper>().getData(key: 'email') != null
-      //     ? const Home_page()
-      //     : vvv()
-      ),
+  GoRoute(
+      path: "/",
+      builder: (context, state) =>
+          getIt<CacheHelper>().getData(key: 'email') != null
+              ? const Home_page()
+              : vvv()),
 
   GoRoute(
     path: "/Login",
@@ -100,9 +102,13 @@ final GoRouter router = GoRouter(routes: [
     path: "/Cart",
     builder: (context, state) => const Cart(),
   ),
+  // GoRoute(
+  //   path: "/Test",
+  //   builder: (context, state) => const Test(),
+  // ),
   GoRoute(
-    path: "/Test",
-    builder: (context, state) => const Test(),
+    path: "/AddressAddMaps",
+    builder: (context, state) => const AddressAddMaps(),
   ),
 ]);
 

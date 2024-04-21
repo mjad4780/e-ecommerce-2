@@ -88,3 +88,6 @@ final class searchplaysuccess extends HomePageState {}
 final class searchplayfailer extends HomePageState {}
 
 final class mmmmmmmmmm extends HomePageState {}
+
+//////////
+final class Location extends HomePageState {}

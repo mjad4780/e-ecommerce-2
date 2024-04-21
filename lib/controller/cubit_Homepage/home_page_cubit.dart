@@ -4,9 +4,11 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz_unsafe.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/class/sqlliite.dart';
 import 'package:untitled/core/function/handingdata.dart';
+import 'package:untitled/core/function/show.dart';
 import 'package:untitled/data/datasourse/Local/localHive.dart';
 import 'package:untitled/data/datasourse/remote/favorite/favorite.dart';
 import 'package:untitled/data/datasourse/remote/home/categories.dart';
@@ -66,7 +68,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
         statusReqest = StatusReqest.offlinefailure;
       }
-    } on Exception catch (e) {
+    } on Exception {
       statusReqest = StatusReqest.serverfailure;
       emit((FailerHome()));
     }
@@ -267,6 +269,35 @@ class HomePageCubit extends Cubit<HomePageState> {
     search = true;
     MySearch();
     emit(searchplay());
+  }
+
+  ///////////////////////////////////////////////////////////
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (serviceEnabled == false) {
+      print('habfdmfndxzvfszmvdszkvlszlfg');
+    }
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    emit(Location());
+    return await Geolocator.getCurrentPosition();
   }
 }
 

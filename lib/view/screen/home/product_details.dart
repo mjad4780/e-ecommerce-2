@@ -8,7 +8,6 @@ import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
 import 'package:untitled/view/widget/product_datauiles/CostemBottomNavigation.dart';
 import 'package:untitled/view/widget/product_datauiles/body_product.dart';
-import 'package:untitled/view/widget/product_datauiles/priceandcount.dart';
 import 'package:untitled/view/widget/product_datauiles/subitemslist.dart';
 
 class ProductDetails extends StatelessWidget {

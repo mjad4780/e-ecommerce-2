@@ -84,6 +84,8 @@ class CartCubit extends Cubit<CartState> {
   List<CartModel> mycart = [];
 
   int Totalprice = 0;
+  // int itemprice_discount = 0;
+
   String itemcount = '';
   GETCart() async {
     try {
@@ -95,6 +97,8 @@ class CartCubit extends Cubit<CartState> {
       if (response['status'] == "success") {
         if (response['datacart']['status'] != 'failure') {
           Totalprice = response['countprice']['totalprice'];
+          // itemprice_discount = response['countprice']['itemprice_discount'];
+
           itemcount = response['countprice']['totalcount'];
           for (var item in response['datacart']['data']) {
             mycart.add(CartModel.fromJson(item));

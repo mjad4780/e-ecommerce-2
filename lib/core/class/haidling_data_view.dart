@@ -24,7 +24,7 @@ class HandlingDataView extends StatelessWidget {
                     child: Lottie.asset(Assets.server, width: 250, height: 250))
                 : statusReqest1 == StatusReqest.failure
                     ? Center(
-                        child: Lottie.asset(Assets.noData,
+                        child: Lottie.asset(Assets.nodata,
                             width: 250, height: 250))
                     : widget;
   }

@@ -27,13 +27,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AdressCubit(getIt<DioConsumer>())),
+        BlocProvider(
+            create: (context) =>
+                AdressCubit(getIt<DioConsumer>())..getLating()),
         BlocProvider(
             create: (context) => HomePageCubit(
                 Api: getIt<DioConsumer>(),
                 networkInfo: getIt<NetworkInfoImpl>())
               ..GetFavorite()
-              ..getDate()),
+              ..getDate()
+              ..determinePosition()),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),

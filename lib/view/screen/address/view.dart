@@ -5,6 +5,7 @@ import 'package:untitled/core/class/haidling_data_view.dart';
 import 'package:untitled/data/model/addressmodel.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/view/screen/address/edit.dart';
+import 'package:untitled/view/widget/Adress/CardAdress.dart';
 
 import '../../../controller/cubit_Adress/adress_cubit.dart';
 import '../../../my core/databases/api/dio_consumer.dart';
@@ -29,73 +30,35 @@ class AddressView extends StatelessWidget {
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     cubit.statusReqest = StatusReqest.none;
-                    push(context, '/AddressAddDetails');
-                    // Get.toNamed(AppRoute.addressadd);
+                    push(context, '/AddressAddMaps');
                   },
                   child: const Icon(Icons.add)),
               body: HandlingDataView(
                 statusReqest1: cubit.statusReqest!,
-                widget: Container(
-                  child: ListView.builder(
-                    itemCount: cubit.getadrees.length,
-                    itemBuilder: (context, i) {
-                      return CardAddress(
-                        onedit: () {
-                          navigaton(
-                              context,
-                              EditressAddDetails(
-                                city: cubit.getadrees[i].addressCity!,
-                                name: cubit.getadrees[i].addressName!,
-                                street: cubit.getadrees[i].addressStreet!,
-                                id: cubit.getadrees[i].addressId,
-                              ));
-                        },
-                        onDelete: () {
-                          cubit.adressdelete(cubit.getadrees[i].addressId!);
-                        },
-                        addressModel: cubit.getadrees[i],
-                      );
-                    },
-                  ),
+                widget: ListView.builder(
+                  itemCount: cubit.getadrees.length,
+                  itemBuilder: (context, i) {
+                    return CardAddress(
+                      onedit: () {
+                        navigaton(
+                            context,
+                            EditressAddDetails(
+                              city: cubit.getadrees[i].addressCity!,
+                              name: cubit.getadrees[i].addressName!,
+                              street: cubit.getadrees[i].addressStreet!,
+                              id: cubit.getadrees[i].addressId,
+                            ));
+                      },
+                      onDelete: () {
+                        cubit.adressdelete(cubit.getadrees[i].addressId!);
+                      },
+                      addressModel: cubit.getadrees[i],
+                    );
+                  },
                 ),
               ));
         },
       ),
-    );
-  }
-}
-
-class CardAddress extends StatelessWidget {
-  final void Function()? onDelete;
-  final void Function()? onedit;
-  final AddressModel addressModel;
-  const CardAddress(
-      {super.key, this.onDelete, this.onedit, required this.addressModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-          padding: const EdgeInsets.all(10),
-          child: ListTile(
-            title: Text(addressModel.addressName!),
-            subtitle: Text(
-                "${addressModel.addressCity} ${addressModel.addressStreet}"),
-            trailing: SizedBox(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                      onPressed: onDelete,
-                      icon: const Icon(Icons.delete_outline)),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  IconButton(onPressed: onedit, icon: const Icon(Icons.edit)),
-                ],
-              ),
-            ),
-          )),
     );
   }
 }

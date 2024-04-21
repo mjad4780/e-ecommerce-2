@@ -28,11 +28,8 @@ class Item_categories extends StatelessWidget {
                       controller: cubit.searchcontroller,
                       onChanged: (val) {
                         cubit.mysearch(val);
-                        print(val);
                       },
                       onPressed: () {
-                        print('object');
-
                         cubit.playsearch();
                       },
                     ),

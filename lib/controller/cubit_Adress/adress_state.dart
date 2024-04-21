@@ -44,3 +44,9 @@ final class deleteAdressfailer extends AdressState {
 
   deleteAdressfailer({required this.statusReqest});
 }
+
+final class GetLating extends AdressState {}
+
+final class AddMarker extends AdressState {}
+
+final class LoidungLating extends AdressState {}

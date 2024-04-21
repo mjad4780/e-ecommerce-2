@@ -48,7 +48,7 @@ class BodyProduct extends StatelessWidget {
                 onRemove: () {
                   cubit.Delete(itemsModel.itemsId!);
                 },
-                price: itemsModel.itemsPrice.toString(),
+                price: itemsModel.Itemprice_discount.toString(),
                 count: cubit.countitems),
             const SizedBox(
               height: 20,
