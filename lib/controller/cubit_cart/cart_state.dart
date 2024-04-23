@@ -40,3 +40,16 @@ final class SuccessGetcurrentCart extends CartState {}
 final class FailerGetcurrentCart extends CartState {}
 
 final class NodataGetcurrentCart extends CartState {}
+
+/////////coupon/////////////////////
+final class LoadingCoupon extends CartState {}
+
+final class SuccessCoupon extends CartState {}
+
+final class NodataCoupon extends CartState {}
+
+final class FailerCoupon extends CartState {
+  final StatusReqest statusReqest;
+
+  FailerCoupon({required this.statusReqest});
+}

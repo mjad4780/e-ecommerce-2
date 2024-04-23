@@ -40,6 +40,8 @@ class EndPoint {
   static String adress_add = '$baseUrl/adress/add_adress.php';
   static String adress_edit = '$baseUrl/adress/edit_adress.php';
   static String adress_delete = '$baseUrl/adress/delete_adress.php';
+  /////////////////////////////////Coupon
+  static String checkCoupon = '$baseUrl/coupon/checkCoupon.php';
 }
 
 class ApiKey {

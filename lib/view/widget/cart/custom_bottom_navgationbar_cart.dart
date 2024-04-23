@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/core/constans/Color.dart';
+import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/view/widget/cart/buttoncart.dart';
 
 import 'InputCoupon.dart';
@@ -38,7 +39,7 @@ class BottomNavgationBarCart extends StatelessWidget {
             style: TextStyle(
                 color: AppColor.primaryColor, fontWeight: FontWeight.bold),
           )),
-          const SizedBox(height: 10),
+          const SizedBox(height: 60),
           Container(
               margin: const EdgeInsets.all(10),
               padding: const EdgeInsets.all(10),
@@ -47,6 +48,7 @@ class BottomNavgationBarCart extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 children: [
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,11 +67,11 @@ class BottomNavgationBarCart extends StatelessWidget {
                     children: [
                       Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: const Text("shipping",
+                          child: const Text("discount",
                               style: TextStyle(fontSize: 16))),
                       Container(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text("$shipping \$",
+                          child: Text("$discount \$",
                               style: const TextStyle(fontSize: 16)))
                     ],
                   ),
@@ -96,13 +98,17 @@ class BottomNavgationBarCart extends StatelessWidget {
                                   color: AppColor.primaryColor)))
                     ],
                   ),
-                  const SizedBox(height: 22),
-                  CustomButtonCart(
-                    textbutton: "Place Order",
-                    onPressed: () {},
-                  )
+                  const SizedBox(height: 10),
                 ],
               )),
+          const SizedBox(height: 10),
+          CustomButtonCart(
+            textbutton: "Place Order",
+            onPressed: () {
+              push(context, '/checkOrder');
+            },
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );

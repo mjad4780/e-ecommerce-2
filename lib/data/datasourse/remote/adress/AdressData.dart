@@ -20,7 +20,6 @@ class Adress {
         for (var item in response['data']) {
           ggg.add(AddressModel.fromJson(item));
         }
-        print('4fjsaygfbd${getIt<CacheHelper>().getData(key: 'id')}');
         // List listdata = response['data'];;
         // ggg.addAll(listdata.map((e) => AddressModel.fromJson(e)));
 
