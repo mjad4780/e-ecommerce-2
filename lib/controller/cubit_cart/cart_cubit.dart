@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/core/function/handingdata.dart';
@@ -146,6 +147,7 @@ class CartCubit extends Cubit<CartState> {
       );
     }, (r) {
       discount = r.couponDiscount!;
+      id = r.couponId!;
       emit((SuccessCoupon()));
     });
   }

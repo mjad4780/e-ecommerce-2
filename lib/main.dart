@@ -13,6 +13,8 @@ import 'package:untitled/my%20core/get_it/get_it.dart';
 
 import 'package:untitled/view/widget/Materialapp/Materialapp.dart';
 
+import 'controller/cubit_Order/order_cubit.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServise();
@@ -51,6 +53,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 CartCubit(networkInfo: getIt<NetworkInfoImpl>())),
+        BlocProvider(create: (context) => OrderCubit()),
       ],
       child: const MaterialApp2(),
     );

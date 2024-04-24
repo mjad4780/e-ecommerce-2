@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
 import 'package:untitled/core/constans/Color.dart';
-import 'package:untitled/data/model/cartmodel.dart';
 import 'package:untitled/my%20core/databases/api/end_ponits.dart';
 
 class CustomItemsCartList extends StatelessWidget {
@@ -28,13 +26,9 @@ class CustomItemsCartList extends StatelessWidget {
       child: Container(
         child: Row(children: [
           Expanded(
-              flex: 2, child: Image.network('${EndPoint.image_item}/$imagename')
-              //  CachedNetworkImage(
-              //   imageUrl: "${AppLink.imagestItems}/$imagename",
-              //   height: 80,
-
-              // )
-              ),
+              flex: 2,
+              child: CachedNetworkImage(
+                  imageUrl: '${EndPoint.image_item}/$imagename')),
           Expanded(
               flex: 3,
               child: ListTile(

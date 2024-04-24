@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:untitled/controller/cubit_cart/cart_cubit.dart';
 import 'package:untitled/core/class/haidling_data_view.dart';
-import 'package:untitled/core/function/show.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
-import 'package:untitled/view/widget/cart/appbarcart.dart';
 import 'package:untitled/view/widget/cart/custom_bottom_navgationbar_cart.dart';
 import 'package:untitled/view/widget/cart/customitemscartlist.dart';
 import 'package:untitled/view/widget/cart/topcardcart.dart';
@@ -24,14 +23,22 @@ class Cart extends StatelessWidget {
       child: BlocConsumer<CartCubit, CartState>(
         listener: (context, state) {
           if (state is NodataCoupon) {
-            showMyDialog(context);
+            showMyDialog(context, 'Coupon Not Valid');
           }
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<CartCubit>(context);
-
           return Scaffold(
             bottomNavigationBar: BottomNavgationBarCart(
+              onPressedButtonCart: () {
+                if (cubit.mycart.isNotEmpty) {
+                  GoRouter.of(context).push('/checkOrder', extra: {
+                    'totalprice': cubit.Totalprice,
+                    'coponid': cubit.id
+                  });
+                }
+                showMyDialog(context, ' priduct add to cart');
+              },
               onApplyCoupon: () => cubit.CeckCoupon(),
               price: cubit.getTotalPrice().toString(),
               shipping: "",

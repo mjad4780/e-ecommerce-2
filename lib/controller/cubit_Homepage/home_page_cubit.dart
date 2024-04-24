@@ -1,15 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
-import 'package:untitled/core/class/sqlliite.dart';
 import 'package:untitled/core/function/handingdata.dart';
-import 'package:untitled/core/function/show.dart';
-import 'package:untitled/data/datasourse/Local/localHive.dart';
+
 import 'package:untitled/data/datasourse/remote/favorite/favorite.dart';
 import 'package:untitled/data/datasourse/remote/home/categories.dart';
 import 'package:untitled/data/datasourse/remote/home/item_categories.dart';
@@ -103,7 +98,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       emit(mmmmmmmmmm());
 
       // await GetFavorite();
-    } on Exception catch (e) {
+    } on Exception {
       statusReqest = StatusReqest.serverfailure;
       emit((FaileritemCategories()));
     }

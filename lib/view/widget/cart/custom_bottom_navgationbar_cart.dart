@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/core/constans/Color.dart';
 import 'package:untitled/my%20core/Navigator/Navigator.dart';
 import 'package:untitled/view/widget/cart/buttoncart.dart';
 
+import '../../../controller/cubit_Adress/adress_cubit.dart';
 import 'InputCoupon.dart';
 
 class BottomNavgationBarCart extends StatelessWidget {
   final String price;
   final String shipping;
   final String totalprice;
+  final void Function()? onPressedButtonCart;
 
   final String discount;
   final TextEditingController controllercoupon;
@@ -20,7 +23,8 @@ class BottomNavgationBarCart extends StatelessWidget {
       required this.totalprice,
       required this.discount,
       required this.controllercoupon,
-      this.onApplyCoupon});
+      this.onApplyCoupon,
+      this.onPressedButtonCart});
 
   @override
   Widget build(BuildContext context) {
@@ -103,11 +107,7 @@ class BottomNavgationBarCart extends StatelessWidget {
               )),
           const SizedBox(height: 10),
           CustomButtonCart(
-            textbutton: "Place Order",
-            onPressed: () {
-              push(context, '/checkOrder');
-            },
-          ),
+              textbutton: "Place Order", onPressed: onPressedButtonCart),
           const SizedBox(height: 20),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-showMyDialog(BuildContext context) async {
+showMyDialog(BuildContext context, String text) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -8,7 +8,7 @@ showMyDialog(BuildContext context) async {
       return AlertDialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: const Text('Coupon Not Valid'));
+          title: Text(text));
     },
   );
 }
