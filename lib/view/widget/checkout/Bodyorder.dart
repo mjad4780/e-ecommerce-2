@@ -70,9 +70,10 @@ class Bodyorder extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     cubit1.chooseDeliveryType(1); // 1 => recive
+                    cubit1.chooseShippingAddress(0);
                   },
                   child: CardDeliveryTypeCheckout(
-                      imagename: Assets.images002DeliveryTruck,
+                      imagename: Assets.imagesDrivethru,
                       title: "Revice",
                       active: cubit1.deliveryType == 1 ? true : false),
                 ),

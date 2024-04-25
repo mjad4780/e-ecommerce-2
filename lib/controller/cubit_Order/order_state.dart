@@ -18,3 +18,12 @@ final class SuccessCheckout extends OrderState {}
 final class FDailerCheckout extends OrderState {}
 
 final class Failer extends OrderState {}
+
+//////////////////////////
+final class Loadinggetorder extends OrderState {}
+
+final class Successgetorder extends OrderState {}
+
+final class FDailergetorder extends OrderState {}
+
+final class Failergetorder extends OrderState {}

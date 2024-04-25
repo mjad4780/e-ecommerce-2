@@ -44,6 +44,7 @@ class EndPoint {
   static String checkCoupon = '$baseUrl/coupon/checkCoupon.php';
   /////////////////order
   static String checkout = '$baseUrl/orders/checkout.php';
+  static String getorder = '$baseUrl/orders/get_order.php';
 }
 
 class ApiKey {

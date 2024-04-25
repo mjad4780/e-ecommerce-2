@@ -34,7 +34,8 @@ class Cart extends StatelessWidget {
                 if (cubit.mycart.isNotEmpty) {
                   GoRouter.of(context).push('/checkOrder', extra: {
                     'totalprice': cubit.Totalprice,
-                    'coponid': cubit.id
+                    'coponid': cubit.id,
+                    'disscount': cubit.discount
                   });
                 }
                 showMyDialog(context, ' priduct add to cart');

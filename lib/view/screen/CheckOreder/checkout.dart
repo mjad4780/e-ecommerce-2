@@ -29,8 +29,8 @@ class CheckOrder extends StatelessWidget {
                 color: AppColor.secondColor,
                 textColor: Colors.white,
                 onPressed: () {
-                  cubit1.checkout(
-                      context, hello['totalprice'], hello['coponid']);
+                  cubit1.checkout(context, hello['totalprice'],
+                      hello['coponid'], hello['disscount']);
                 },
                 child: const Text("Checkout",
                     style:

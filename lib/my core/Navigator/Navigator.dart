@@ -22,6 +22,7 @@ import 'package:untitled/view/screen/home/profile.dart';
 import 'package:untitled/view/screen/home/setting.dart';
 
 import '../../view/screen/CheckOreder/checkout.dart';
+import '../../view/screen/CheckOreder/pending.dart';
 
 final GoRouter router = GoRouter(routes: [
   GoRoute(
@@ -114,6 +115,10 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/checkOrder",
     builder: (context, state) => const CheckOrder(),
+  ),
+  GoRoute(
+    path: "/OrdersPending",
+    builder: (context, state) => const OrdersPending(),
   ),
 ]);
 

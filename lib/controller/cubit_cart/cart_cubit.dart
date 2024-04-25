@@ -2,14 +2,12 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled/core/class/StatusReqest.dart';
 import 'package:untitled/core/function/handingdata.dart';
 import 'package:untitled/data/datasourse/remote/cart/cart.dart';
 import 'package:untitled/data/datasourse/remote/coupon/check_coupon.dart';
 import 'package:untitled/data/model/cartmodel.dart';
-import 'package:untitled/data/model/couponModel.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
