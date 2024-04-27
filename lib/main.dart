@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/controller/cubit_Adress/adress_cubit.dart';
@@ -6,19 +7,20 @@ import 'package:untitled/controller/cubit_auth/auth_cubit.dart';
 import 'package:untitled/controller/cubit_cart/cart_cubit.dart';
 import 'package:untitled/controller/cubit_forget/forget_password_cubit.dart';
 import 'package:untitled/controller/cubit_translate/translate_cubit.dart';
+import 'package:untitled/core/function/show.dart';
 import 'package:untitled/my%20core/connection/network_info.dart';
 import 'package:untitled/my%20core/databases/api/dio_consumer.dart';
 import 'package:untitled/my%20core/databases/cache/cache_helper.dart';
 import 'package:untitled/my%20core/get_it/get_it.dart';
-
 import 'package:untitled/view/widget/Materialapp/Materialapp.dart';
-
 import 'controller/cubit_Order/order_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   setupServise();
   await getIt<CacheHelper>().init();
+
   runApp(const MyApp());
 }
 
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
                 networkInfo: getIt<NetworkInfoImpl>())
               ..GetFavorite()
               ..getDate()
-              ..determinePosition()),
+              ..determinePosition()
+              ..firemessage()
+              ..firebase(context)),
         BlocProvider(
           create: (context) => TranslateCubit()..getsavedlanguage(),
         ),
@@ -83,3 +87,42 @@ class MyApp extends StatelessWidget {
 //     );
 //   }
 // }
+
+class TabBarWidget extends StatelessWidget {
+  const TabBarWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        // backgroundColor: Colors.black,
+        title: const Text('Snackbar'),
+      ),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                final snackbar = SnackBar(
+                    showCloseIcon: true,
+                    dismissDirection: DismissDirection.vertical,
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      textColor: Colors.blue,
+                      onPressed: () {},
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    behavior: SnackBarBehavior.floating,
+                    // padding: EdgeInsets.all(20),
+
+                    duration: const Duration(milliseconds: 3000),
+                    // backgroundColor: Colors.red,
+                    content: const Text('This is an error'));
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+              },
+              child: const Text('Show Snackbar')),
+        ),
+      ),
+    );
+  }
+}

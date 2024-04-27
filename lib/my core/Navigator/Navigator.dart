@@ -21,6 +21,7 @@ import 'package:untitled/view/screen/home/favorite.dart';
 import 'package:untitled/view/screen/home/profile.dart';
 import 'package:untitled/view/screen/home/setting.dart';
 
+import '../../main.dart';
 import '../../view/screen/CheckOreder/checkout.dart';
 import '../../view/screen/CheckOreder/pending.dart';
 

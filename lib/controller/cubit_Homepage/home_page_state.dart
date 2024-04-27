@@ -91,3 +91,12 @@ final class mmmmmmmmmm extends HomePageState {}
 
 //////////
 final class Location extends HomePageState {}
+
+////////////////
+final class FirebaseMessage extends HomePageState {
+  final RemoteMessage stream;
+
+  FirebaseMessage({required this.stream});
+}
+
+final class Massege extends HomePageState {}

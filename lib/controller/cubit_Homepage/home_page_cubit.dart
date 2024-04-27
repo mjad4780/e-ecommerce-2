@@ -1,8 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:untitled/core/function/handingdata.dart';
 
 import 'package:untitled/data/datasourse/remote/favorite/favorite.dart';
@@ -21,6 +25,7 @@ import 'package:untitled/view/screen/home/setting.dart';
 import '../../core/class/StatusReqest.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/function/show.dart';
 import '../../data/model/categoriesmodel.dart';
 import '../../my core/databases/api/dio_consumer.dart';
 
@@ -33,7 +38,6 @@ class HomePageCubit extends Cubit<HomePageState> {
   final ApiConsumer Api;
   StatusReqest? statusReqest = StatusReqest.none;
   final NetworkInfo networkInfo;
-  StatusReqest? statusReqest1 = StatusReqest.none;
 
   HomeData home = HomeData(
     Api: getIt<DioConsumer>(),
@@ -124,7 +128,7 @@ class HomePageCubit extends Cubit<HomePageState> {
       var response = await favorite.removefavorite(id);
       await GetFavorite();
       emit(SuccessRemove());
-    } on Exception catch (e) {
+    } on Exception {
       statusReqest = StatusReqest.serverfailure;
 
       emit(failerRemove());
@@ -293,6 +297,32 @@ class HomePageCubit extends Cubit<HomePageState> {
 
     emit(Location());
     return await Geolocator.getCurrentPosition();
+  }
+
+  firemessage() async {
+    // FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings =
+        await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    emit(Massege());
+  }
+
+  firebase(BuildContext context) {
+    FirebaseMessaging.onMessage.listen((message) {
+      print(message.notification!.title);
+      FlutterRingtonePlayer().playNotification();
+
+      emit(FirebaseMessage(stream: message));
+    });
   }
 }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237528939048",
+    "project_id": "e-ecommerce-f3bee",
+    "storage_bucket": "e-ecommerce-f3bee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237528939048:android:1a22d458c64aaa1e0ed31d",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4YAlJdb6Wj0V2kAJKnXgk0_pBVYQ20uI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
